@@ -11,15 +11,36 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Implementazione JDBC del DAO per le librerie.
- * DAO stateless: fornisce metodi "comodi" (gestione interna della Connection)
- * e metodi "transaction-aware" che accettano una Connection come parametro.
+ * Implementazione JDBC (Java Database Connectivity) dell'interfaccia {@link LibrerieDAO}.
+ * <p>
+ * Questa classe gestisce la persistenza degli oggetti {@link Libreria} su un
+ * database relazionale tramite JDBC. È responsabile di tutte le operazioni
+ * CRUD (Create, Read, Update, Delete) per le entità {@code Libreria} e le
+ * relative associazioni con i libri.
+ * <p>
+ * La classe è progettata per essere <b>stateless</b> e offre due tipi di API:
+ * <ul>
+ *     <li><b>API "convenience"</b>: implementano direttamente i metodi dell'interfaccia
+ *         {@code LibrerieDAO}. Gestiscono autonomamente l'apertura e la chiusura della
+ *         connessione al database per ogni singola operazione, utilizzando un
+ *         {@code try-with-resources} su {@link DBConnectionSingleton#openNewConnection()}.
+ *         Sono semplici da usare ma non adatte a transazioni complesse che coinvolgono
+ *         più operazioni DAO.</li>
+ *     <li><b>API "transaction-aware"</b>: sono metodi pubblici aggiuntivi che accettano
+ *         un'istanza di {@link Connection} come parametro. Questo permette a un livello
+ *         superiore (es. un Service Layer) di controllare il ciclo di vita della transazione
+ *         (commit/rollback) quando più operazioni DAO devono essere eseguite atomicamente.</li>
+ * </ul>
+ *
+ * @see LibrerieDAO
+ * @see Libreria
+ * @see DBConnectionSingleton
  */
 public class JdbcLibrerieDAO implements LibrerieDAO {
 
     private static final Logger logger = LogManager.getLogger(JdbcLibrerieDAO.class);
 
-    // Query SQL
+    // == Costanti per le query SQL ==
     private static final String INSERT_LIBRERIA =
         "INSERT INTO Librerie (user_id, nome_libreria, data_creazione) VALUES (?, ?, ?) RETURNING libreria_id";
 
@@ -53,12 +74,24 @@ public class JdbcLibrerieDAO implements LibrerieDAO {
     private static final String CHECK_NOME_LIBRERIA_EXISTS =
         "SELECT COUNT(*) FROM Librerie WHERE user_id = ? AND nome_libreria = ?";
 
+    /**
+     * Costruttore di default.
+     * Non esegue alcuna operazione speciale, in quanto la classe è stateless.
+     */
     public JdbcLibrerieDAO() { }
 
     // ----------------------------
     // API "comode" (gestione interna della Connection)
     // ----------------------------
 
+    /**
+     * {@inheritDoc}
+     * <p>
+     * Questa implementazione gestisce autonomamente la connessione al database.
+     * Apre una nuova connessione, esegue l'operazione delegando al metodo
+     * {@link #creaLibreria(Connection, Libreria)}, e chiude la connessione.
+     * In caso di errore, logga l'eccezione e restituisce {@code null}.
+     */
     @Override
     public Libreria creaLibreria(Libreria libreria) {
         try (Connection conn = DBConnectionSingleton.openNewConnection()) {
@@ -69,6 +102,14 @@ public class JdbcLibrerieDAO implements LibrerieDAO {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     * <p>
+     * Questa implementazione gestisce autonomamente la connessione al database.
+     * Apre una nuova connessione, esegue la ricerca delegando al metodo
+     * {@link #getLibreriaById(Connection, int)}, e chiude la connessione.
+     * In caso di errore, logga l'eccezione e restituisce {@code null}.
+     */
     @Override
     public Libreria getLibreriaById(int libreriaId) {
         try (Connection conn = DBConnectionSingleton.openNewConnection()) {
@@ -79,6 +120,14 @@ public class JdbcLibrerieDAO implements LibrerieDAO {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     * <p>
+     * Questa implementazione gestisce autonomamente la connessione al database.
+     * Apre una nuova connessione, esegue la ricerca delegando al metodo
+     * {@link #getLibrerieByUserId(Connection, String)}, e chiude la connessione.
+     * In caso di errore, logga l'eccezione e restituisce una lista vuota.
+     */
     @Override
     public List<Libreria> getLibrerieByUserId(String userId) {
         try (Connection conn = DBConnectionSingleton.openNewConnection()) {
@@ -89,6 +138,14 @@ public class JdbcLibrerieDAO implements LibrerieDAO {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     * <p>
+     * Questa implementazione gestisce autonomamente la connessione al database.
+     * Apre una nuova connessione, esegue la ricerca delegando al metodo
+     * {@link #getLibreriaByUserIdAndNome(Connection, String, String)}, e chiude la connessione.
+     * In caso di errore, logga l'eccezione e restituisce {@code null}.
+     */
     @Override
     public Libreria getLibreriaByUserIdAndNome(String userId, String nomeLibreria) {
         try (Connection conn = DBConnectionSingleton.openNewConnection()) {
@@ -99,6 +156,14 @@ public class JdbcLibrerieDAO implements LibrerieDAO {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     * <p>
+     * Questa implementazione gestisce autonomamente la connessione al database.
+     * Apre una nuova connessione, esegue l'aggiornamento delegando al metodo
+     * {@link #aggiornaLibreria(Connection, Libreria)}, e chiude la connessione.
+     * In caso di errore, logga l'eccezione e restituisce {@code false}.
+     */
     @Override
     public boolean aggiornaLibreria(Libreria libreria) {
         try (Connection conn = DBConnectionSingleton.openNewConnection()) {
@@ -109,6 +174,14 @@ public class JdbcLibrerieDAO implements LibrerieDAO {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     * <p>
+     * Questa implementazione gestisce autonomamente la connessione al database.
+     * Apre una nuova connessione, esegue l'eliminazione delegando al metodo
+     * {@link #eliminaLibreria(Connection, int)}, e chiude la connessione.
+     * In caso di errore, logga l'eccezione e restituisce {@code false}.
+     */
     @Override
     public boolean eliminaLibreria(int libreriaId) {
         try (Connection conn = DBConnectionSingleton.openNewConnection()) {
@@ -119,6 +192,14 @@ public class JdbcLibrerieDAO implements LibrerieDAO {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     * <p>
+     * Questa implementazione gestisce autonomamente la connessione al database.
+     * Apre una nuova connessione, esegue l'operazione delegando al metodo
+     * {@link #aggiungiLibroALibreria(Connection, int, long)}, e chiude la connessione.
+     * In caso di errore, logga l'eccezione e restituisce {@code false}.
+     */
     @Override
     public boolean aggiungiLibroALibreria(int libreriaId, long libroId) {
         try (Connection conn = DBConnectionSingleton.openNewConnection()) {
@@ -129,6 +210,14 @@ public class JdbcLibrerieDAO implements LibrerieDAO {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     * <p>
+     * Questa implementazione gestisce autonomamente la connessione al database.
+     * Apre una nuova connessione, esegue l'operazione delegando al metodo
+     * {@link #rimuoviLibroDaLibreria(Connection, int, long)}, e chiude la connessione.
+     * In caso di errore, logga l'eccezione e restituisce {@code false}.
+     */
     @Override
     public boolean rimuoviLibroDaLibreria(int libreriaId, long libroId) {
         try (Connection conn = DBConnectionSingleton.openNewConnection()) {
@@ -139,6 +228,14 @@ public class JdbcLibrerieDAO implements LibrerieDAO {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     * <p>
+     * Questa implementazione gestisce autonomamente la connessione al database.
+     * Apre una nuova connessione, esegue la verifica delegando al metodo
+     * {@link #isNomeLibreriaEsistente(Connection, String, String)}, e chiude la connessione.
+     * In caso di errore, logga l'eccezione e restituisce {@code false}.
+     */
     @Override
     public boolean isNomeLibreriaEsistente(String userId, String nomeLibreria) {
         try (Connection conn = DBConnectionSingleton.openNewConnection()) {
@@ -149,6 +246,14 @@ public class JdbcLibrerieDAO implements LibrerieDAO {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     * <p>
+     * Questa implementazione gestisce autonomamente la connessione al database.
+     * Apre una nuova connessione, esegue la verifica delegando al metodo
+     * {@link #isLibroInLibreria(Connection, int, long)}, e chiude la connessione.
+     * In caso di errore, logga l'eccezione e restituisce {@code false}.
+     */
     @Override
     public boolean isLibroInLibreria(int libreriaId, long libroId) {
         try (Connection conn = DBConnectionSingleton.openNewConnection()) {
@@ -159,6 +264,14 @@ public class JdbcLibrerieDAO implements LibrerieDAO {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     * <p>
+     * Questa implementazione gestisce autonomamente la connessione al database.
+     * Apre una nuova connessione, esegue la ricerca delegando al metodo
+     * {@link #getLibriIdsInLibreria(Connection, int)}, e chiude la connessione.
+     * In caso di errore, logga l'eccezione e restituisce una lista vuota.
+     */
     @Override
     public List<Long> getLibriIdsInLibreria(int libreriaId) {
         try (Connection conn = DBConnectionSingleton.openNewConnection()) {
@@ -169,10 +282,23 @@ public class JdbcLibrerieDAO implements LibrerieDAO {
         }
     }
 
-    // ----------------------------
-    // API "transaction-aware" (accettano Connection come parametro)
-    // ----------------------------
+    // -------------------------------------------------
+    // API "transaction-aware" (ricevono Connection)
+    // -------------------------------------------------
 
+    /**
+     * Crea una nuova libreria nel database utilizzando una connessione esistente.
+     * <p>
+     * Questo metodo è progettato per essere eseguito all'interno di una transazione
+     * gestita da un livello superiore. Non gestisce commit o rollback.
+     *
+     * @param conn la connessione al database da utilizzare, che deve essere valida e aperta.
+     * @param libreria l'oggetto {@link Libreria} da salvare. Vengono utilizzati i campi
+     *                 {@code userId}, {@code nomeLibreria} e {@code dataCreazione}.
+     * @return una nuova istanza di {@link Libreria} completa dell'ID generato dal database,
+     *         o {@code null} se la creazione fallisce.
+     * @throws SQLException se si verifica un errore di accesso al database.
+     */
     public Libreria creaLibreria(Connection conn, Libreria libreria) throws SQLException {
         try (PreparedStatement stmt = conn.prepareStatement(INSERT_LIBRERIA)) {
             stmt.setString(1, libreria.userId());
@@ -185,6 +311,7 @@ public class JdbcLibrerieDAO implements LibrerieDAO {
                 if (rs.next()) {
                     int libreriaId = rs.getInt(1);
                     logger.info("Libreria creata con ID: {}", libreriaId);
+                    // Restituisce un nuovo oggetto Libreria con l'ID popolato
                     return new Libreria(libreriaId, libreria.userId(), libreria.nomeLibreria(), libreria.dataCreazione(), libreria.libriIds());
                 }
             }
@@ -192,6 +319,17 @@ public class JdbcLibrerieDAO implements LibrerieDAO {
         return null;
     }
 
+    /**
+     * Recupera una libreria tramite ID utilizzando una connessione esistente.
+     * <p>
+     * Questo metodo è progettato per essere eseguito all'interno di una transazione.
+     *
+     * @param conn la connessione al database da utilizzare.
+     * @param libreriaId l'ID della libreria da recuperare.
+     * @return l'oggetto {@link Libreria} corrispondente, completo della lista di ID dei libri,
+     *         o {@code null} se non trovato.
+     * @throws SQLException se si verifica un errore di accesso al database.
+     */
     public Libreria getLibreriaById(Connection conn, int libreriaId) throws SQLException {
         try (PreparedStatement stmt = conn.prepareStatement(SELECT_LIBRERIA_BY_ID)) {
             stmt.setInt(1, libreriaId);
@@ -204,6 +342,17 @@ public class JdbcLibrerieDAO implements LibrerieDAO {
         return null;
     }
 
+    /**
+     * Recupera tutte le librerie di un utente utilizzando una connessione esistente.
+     * <p>
+     * Questo metodo è progettato per essere eseguito all'interno di una transazione.
+     *
+     * @param conn la connessione al database da utilizzare.
+     * @param userId l'ID dell'utente di cui recuperare le librerie.
+     * @return una {@link List} di {@link Libreria}, ognuna completa della lista di ID dei libri.
+     *         Restituisce una lista vuota se l'utente non ha librerie.
+     * @throws SQLException se si verifica un errore di accesso al database.
+     */
     public List<Libreria> getLibrerieByUserId(Connection conn, String userId) throws SQLException {
         List<Libreria> librerie = new ArrayList<>();
         try (PreparedStatement stmt = conn.prepareStatement(SELECT_LIBRERIE_BY_USER_ID)) {
@@ -217,6 +366,18 @@ public class JdbcLibrerieDAO implements LibrerieDAO {
         return librerie;
     }
 
+    /**
+     * Recupera una specifica libreria di un utente tramite il suo nome, utilizzando una connessione esistente.
+     * <p>
+     * Questo metodo è progettato per essere eseguito all'interno di una transazione.
+     *
+     * @param conn la connessione al database da utilizzare.
+     * @param userId l'ID dell'utente proprietario.
+     * @param nomeLibreria il nome della libreria da cercare.
+     * @return l'oggetto {@link Libreria} corrispondente, completo della lista di ID dei libri,
+     *         o {@code null} se non trovato.
+     * @throws SQLException se si verifica un errore di accesso al database.
+     */
     public Libreria getLibreriaByUserIdAndNome(Connection conn, String userId, String nomeLibreria) throws SQLException {
         try (PreparedStatement stmt = conn.prepareStatement(SELECT_LIBRERIA_BY_USER_AND_NOME)) {
             stmt.setString(1, userId);
@@ -230,6 +391,18 @@ public class JdbcLibrerieDAO implements LibrerieDAO {
         return null;
     }
 
+    /**
+     * Aggiorna i dati di una libreria (es. il nome) utilizzando una connessione esistente.
+     * <p>
+     * Questo metodo è progettato per essere eseguito all'interno di una transazione.
+     *
+     * @param conn la connessione al database da utilizzare.
+     * @param libreria l'oggetto {@link Libreria} con i dati aggiornati. L'ID viene usato per
+     *                 identificare la riga da aggiornare.
+     * @return {@code true} se l'aggiornamento ha avuto successo (almeno una riga modificata),
+     *         {@code false} altrimenti.
+     * @throws SQLException se si verifica un errore di accesso al database.
+     */
     public boolean aggiornaLibreria(Connection conn, Libreria libreria) throws SQLException {
         try (PreparedStatement stmt = conn.prepareStatement(UPDATE_LIBRERIA)) {
             stmt.setString(1, libreria.nomeLibreria());
@@ -243,6 +416,19 @@ public class JdbcLibrerieDAO implements LibrerieDAO {
         return false;
     }
 
+    /**
+     * Elimina una libreria dal database tramite il suo ID, utilizzando una connessione esistente.
+     * <p>
+     * L'eliminazione è a cascata sulla tabella di giunzione {@code Libreria_Libro} grazie
+     * ai vincoli del database ({@code ON DELETE CASCADE}).
+     * Questo metodo è progettato per essere eseguito all'interno di una transazione.
+     *
+     * @param conn la connessione al database da utilizzare.
+     * @param libreriaId l'ID della libreria da eliminare.
+     * @return {@code true} se l'eliminazione ha avuto successo (almeno una riga modificata),
+     *         {@code false} altrimenti.
+     * @throws SQLException se si verifica un errore di accesso al database.
+     */
     public boolean eliminaLibreria(Connection conn, int libreriaId) throws SQLException {
         try (PreparedStatement stmt = conn.prepareStatement(DELETE_LIBRERIA)) {
             stmt.setInt(1, libreriaId);
@@ -251,6 +437,19 @@ public class JdbcLibrerieDAO implements LibrerieDAO {
         }
     }
 
+    /**
+     * Associa un libro a una libreria nella tabella di giunzione, utilizzando una connessione esistente.
+     * <p>
+     * Questo metodo è progettato per essere eseguito all'interno di una transazione.
+     *
+     * @param conn la connessione al database da utilizzare.
+     * @param libreriaId l'ID della libreria.
+     * @param libroId l'ID del libro da aggiungere.
+     * @return {@code true} se l'inserimento ha avuto successo (almeno una riga modificata),
+     *         {@code false} altrimenti.
+     * @throws SQLException se si verifica un errore di accesso al database, ad esempio per
+     *                      violazione di vincoli di chiave primaria (libro già presente).
+     */
     public boolean aggiungiLibroALibreria(Connection conn, int libreriaId, long libroId) throws SQLException {
         try (PreparedStatement stmt = conn.prepareStatement(INSERT_LIBRO_IN_LIBRERIA)) {
             stmt.setInt(1, libreriaId);
@@ -265,6 +464,18 @@ public class JdbcLibrerieDAO implements LibrerieDAO {
         return false;
     }
 
+    /**
+     * Rimuove l'associazione di un libro da una libreria, utilizzando una connessione esistente.
+     * <p>
+     * Questo metodo è progettato per essere eseguito all'interno di una transazione.
+     *
+     * @param conn la connessione al database da utilizzare.
+     * @param libreriaId l'ID della libreria.
+     * @param libroId l'ID del libro da rimuovere.
+     * @return {@code true} se la rimozione ha avuto successo (almeno una riga modificata),
+     *         {@code false} altrimenti.
+     * @throws SQLException se si verifica un errore di accesso al database.
+     */
     public boolean rimuoviLibroDaLibreria(Connection conn, int libreriaId, long libroId) throws SQLException {
         try (PreparedStatement stmt = conn.prepareStatement(DELETE_LIBRO_FROM_LIBRERIA)) {
             stmt.setInt(1, libreriaId);
@@ -274,6 +485,18 @@ public class JdbcLibrerieDAO implements LibrerieDAO {
         }
     }
 
+    /**
+     * Verifica se un dato nome di libreria è già in uso da parte di un utente,
+     * utilizzando una connessione esistente.
+     * <p>
+     * Questo metodo è progettato per essere eseguito all'interno di una transazione.
+     *
+     * @param conn la connessione al database da utilizzare.
+     * @param userId l'ID dell'utente.
+     * @param nomeLibreria il nome della libreria da verificare.
+     * @return {@code true} se il nome è già esistente per quell'utente, {@code false} altrimenti.
+     * @throws SQLException se si verifica un errore di accesso al database.
+     */
     public boolean isNomeLibreriaEsistente(Connection conn, String userId, String nomeLibreria) throws SQLException {
         try (PreparedStatement stmt = conn.prepareStatement(CHECK_NOME_LIBRERIA_EXISTS)) {
             stmt.setString(1, userId);
@@ -285,6 +508,17 @@ public class JdbcLibrerieDAO implements LibrerieDAO {
         return false;
     }
 
+    /**
+     * Verifica se un libro è già associato a una libreria, utilizzando una connessione esistente.
+     * <p>
+     * Questo metodo è progettato per essere eseguito all'interno di una transazione.
+     *
+     * @param conn la connessione al database da utilizzare.
+     * @param libreriaId l'ID della libreria.
+     * @param libroId l'ID del libro da verificare.
+     * @return {@code true} se il libro è già presente nella libreria, {@code false} altrimenti.
+     * @throws SQLException se si verifica un errore di accesso al database.
+     */
     public boolean isLibroInLibreria(Connection conn, int libreriaId, long libroId) throws SQLException {
         try (PreparedStatement stmt = conn.prepareStatement(CHECK_LIBRO_IN_LIBRERIA)) {
             stmt.setInt(1, libreriaId);
@@ -296,6 +530,17 @@ public class JdbcLibrerieDAO implements LibrerieDAO {
         return false;
     }
 
+    /**
+     * Recupera la lista di tutti gli ID dei libri contenuti in una specifica libreria,
+     * utilizzando una connessione esistente.
+     * <p>
+     * Questo metodo è progettato per essere eseguito all'interno di una transazione.
+     *
+     * @param conn la connessione al database da utilizzare.
+     * @param libreriaId l'ID della libreria.
+     * @return una {@link List} di {@link Long} rappresentanti gli ID dei libri.
+     * @throws SQLException se si verifica un errore di accesso al database.
+     */
     public List<Long> getLibriIdsInLibreria(Connection conn, int libreriaId) throws SQLException {
         List<Long> libriIds = new ArrayList<>();
         try (PreparedStatement stmt = conn.prepareStatement(SELECT_LIBRI_IN_LIBRERIA)) {
@@ -309,9 +554,24 @@ public class JdbcLibrerieDAO implements LibrerieDAO {
         return libriIds;
     }
 
-    // ----------------------------
-    // Helper: mapping ResultSet -> Libreria usando la Connection corrente
-    // ----------------------------
+    // -------------------------------------------------
+    // Metodo helper per il mapping
+    // -------------------------------------------------
+
+    /**
+     * Metodo helper per mappare una riga di un {@link ResultSet} a un oggetto {@link Libreria}.
+     * <p>
+     * Questo metodo costruisce un oggetto {@code Libreria} completo, recuperando non solo
+     * i dati dalla tabella {@code Librerie}, ma anche la lista associata degli ID dei libri
+     * dalla tabella {@code Libreria_Libro}. Per fare ciò, esegue una query aggiuntiva
+     * utilizzando la stessa connessione passata come parametro.
+     *
+     * @param conn la connessione al database da utilizzare per recuperare gli ID dei libri.
+     * @param rs il ResultSet posizionato sulla riga della libreria da mappare.
+     * @return un nuovo oggetto {@link Libreria} popolato con i dati della riga corrente e la lista degli ID dei libri.
+     * @throws SQLException se si verifica un errore durante la lettura dei dati dal ResultSet
+     *                      o durante la query per recuperare gli ID dei libri.
+     */
     private Libreria mapResultSetToLibreria(Connection conn, ResultSet rs) throws SQLException {
         int libreriaId = rs.getInt("libreria_id");
         String userId = rs.getString("user_id");

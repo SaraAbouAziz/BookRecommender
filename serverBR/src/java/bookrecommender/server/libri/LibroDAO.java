@@ -69,5 +69,14 @@ public interface LibroDAO {
      *         Se nessun libro corrisponde, restituisce una lista vuota.
      */
     List<Libro> cercaLibriPerAutoreEAnno(String autore, String anno);
+
+    /**
+     * Cerca un libro nel database tramite il suo identificativo univoco (ID).
+     *
+     * @param id l'ID univoco del libro da recuperare.
+     * @return una {@link List} di oggetti {@link Libro} che corrispondono al criterio (dovrebbe essere al massimo uno).
+     *         Se nessun libro corrisponde, restituisce una lista vuota.
+     */
+    List<Libro> cercaLibroPerId(Long id);
    
 }

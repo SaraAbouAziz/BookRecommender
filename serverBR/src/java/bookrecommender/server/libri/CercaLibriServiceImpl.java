@@ -10,20 +10,54 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
 
 /**
- * Implementazione RMI del servizio di ricerca libri.
- * Usa DAO stateless: JdbcCercaLibriDAO apre/chiude le connection per ogni operazione.
- * Thread-safe se JdbcCercaLibriDAO è stateless (come progettato).
+ * Implementazione concreta del servizio RMI {@link CercaLibriService}.
+ * <p>
+ * Questa classe agisce come il "Service Layer" per le operazioni di ricerca dei libri.
+ * Estende {@link UnicastRemoteObject} per essere esportabile e accessibile da client remoti tramite RMI.
+ * <p>
+ * Le sue responsabilità principali sono:
+ * <ul>
+ *     <li>Implementare la logica di business per le ricerche definite nell'interfaccia {@link CercaLibriService}.</li>
+ *     <li>Delegare le operazioni di accesso ai dati al DAO appropriato ({@link LibroDAO}).</li>
+ *     <li>Gestire le eccezioni provenienti dal layer di persistenza, incapsulandole in {@link RemoteException}
+ *         per notificarle al client remoto.</li>
+ *     <li>Loggare le operazioni di ricerca per scopi di monitoraggio e debug.</li>
+ * </ul>
+ * Questa implementazione è stateless e thread-safe, poiché si affida a un DAO stateless che gestisce
+ * le connessioni al database per ogni singola operazione.
+ *
+ * @see CercaLibriService
+ * @see LibroDAO
+ * @see JdbcCercaLibriDAO
+ * @see java.rmi.server.UnicastRemoteObject
  */
 public class CercaLibriServiceImpl extends UnicastRemoteObject implements CercaLibriService {
     private static final Logger logger = LogManager.getLogger(CercaLibriServiceImpl.class);
     private final LibroDAO libroDAO;
 
+    /**
+     * Costruisce e inizializza il servizio di ricerca libri.
+     * <p>
+     * Il costruttore invoca il costruttore della superclasse {@link UnicastRemoteObject} per
+     * esportare l'oggetto e renderlo disponibile per le chiamate remote. Inizializza
+     * inoltre l'implementazione del DAO ({@link JdbcCercaLibriDAO}) che verrà utilizzata
+     * per interagire con il database.
+     *
+     * @throws RemoteException se si verifica un errore durante l'esportazione dell'oggetto RMI.
+     */
     public CercaLibriServiceImpl() throws RemoteException {
         super();
         this.libroDAO = new JdbcCercaLibriDAO(); // DAO stateless: sicuro per concorrenza
         logger.info("CercaLibriServiceImpl inizializzato con DAO stateless");
     }
 
+    /**
+     * {@inheritDoc}
+     * <p>
+     * Questa implementazione delega la ricerca al metodo {@link LibroDAO#cercaLibriPerTitolo(String)}.
+     * Qualsiasi eccezione sollevata dal layer di persistenza viene catturata, loggata e
+     * incapsulata in una {@link RemoteException}.
+     */
     @Override
     public List<Libro> cercaLibro_Per_Titolo(String titolo) throws RemoteException {
         try {
@@ -37,6 +71,13 @@ public class CercaLibriServiceImpl extends UnicastRemoteObject implements CercaL
         }
     }
 
+    /**
+     * {@inheritDoc}
+     * <p>
+     * Questa implementazione delega la ricerca al metodo {@link LibroDAO#getLibroById(int)}.
+     * Qualsiasi eccezione sollevata dal layer di persistenza viene catturata, loggata e
+     * incapsulata in una {@link RemoteException}.
+     */
     @Override
     public Libro getTitoloLibroById(int id) throws RemoteException {
         try {
@@ -51,6 +92,13 @@ public class CercaLibriServiceImpl extends UnicastRemoteObject implements CercaL
         }
     }
 
+    /**
+     * {@inheritDoc}
+     * <p>
+     * Questa implementazione delega la ricerca al metodo {@link LibroDAO#cercaLibriPerAutore(String)}.
+     * Qualsiasi eccezione sollevata dal layer di persistenza viene catturata, loggata e
+     * incapsulata in una {@link RemoteException}.
+     */
     @Override
     public List<Libro> cercaLibro_Per_Autore(String autore) throws RemoteException {
         try {
@@ -64,6 +112,13 @@ public class CercaLibriServiceImpl extends UnicastRemoteObject implements CercaL
         }
     }
 
+    /**
+     * {@inheritDoc}
+     * <p>
+     * Questa implementazione delega la ricerca al metodo {@link LibroDAO#cercaLibriPerAutoreEAnno(String, String)}.
+     * Qualsiasi eccezione sollevata dal layer di persistenza viene catturata, loggata e
+     * incapsulata in una {@link RemoteException}.
+     */
     @Override
     public List<Libro> cercaLibro_Per_Autore_e_Anno(String autore, String anno) throws RemoteException {
         try {
@@ -74,6 +129,26 @@ public class CercaLibriServiceImpl extends UnicastRemoteObject implements CercaL
         } catch (Exception e) {
             logger.error("Errore durante la ricerca per autore e anno: " + autore + ", " + anno, e);
             throw new RemoteException("Errore durante la ricerca per autore e anno", e);
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     * <p>
+     * Questa implementazione delega la ricerca al metodo {@link LibroDAO#cercaLibroPerId(Long)}.
+     * Qualsiasi eccezione sollevata dal layer di persistenza viene catturata, loggata e
+     * incapsulata in una {@link RemoteException}.
+     */
+    @Override
+    public List<Libro> cercaLibro_Per_Id(Long id) throws RemoteException {
+        try {
+            logger.info("Ricerca libro per ID: {}", id);
+            List<Libro> risultati = libroDAO.cercaLibroPerId(id);
+            logger.info("Trovati {} libri per ID '{}'", risultati.size(), id);
+            return risultati;
+        } catch (Exception e) {
+            logger.error("Errore durante la ricerca per ID: " + id, e);
+            throw new RemoteException("Errore durante la ricerca per ID", e);
         }
     }
 }

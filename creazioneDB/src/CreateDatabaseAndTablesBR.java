@@ -73,50 +73,51 @@ public class CreateDatabaseAndTablesBR {
             );
             """;
 
-    private static final String createValutazioniLibri = """
-            CREATE TABLE ValutazioniLibri (
-              user_id        VARCHAR(50) NOT NULL,
-              libreria_id    INT NOT NULL,
-              libro_id       BIGINT NOT NULL,
-            
-              stile_score      SMALLINT NOT NULL CHECK (stile_score BETWEEN 1 AND 5),
-              contenuto_score  SMALLINT NOT NULL CHECK (contenuto_score BETWEEN 1 AND 5),
-              gradimento_score SMALLINT NOT NULL CHECK (gradimento_score BETWEEN 1 AND 5),
-              originalita_score SMALLINT NOT NULL CHECK (originalita_score BETWEEN 1 AND 5),
-              qualita_score    SMALLINT NOT NULL CHECK (qualita_score BETWEEN 1 AND 5),
-              voto_complessivo SMALLINT NOT NULL CHECK (voto_complessivo BETWEEN 1 AND 5),
-            
-              stile_note       VARCHAR(256),
-              contenuto_note   VARCHAR(256),
-              gradimento_note  VARCHAR(256),
-              originalita_note VARCHAR(256),
-              qualita_note     VARCHAR(256),
-            
-              data_valutazione TIMESTAMP DEFAULT now(),
-            
-              PRIMARY KEY (user_id, libreria_id, libro_id),
-            
-              FOREIGN KEY (user_id) REFERENCES UtentiRegistrati(user_id) ON DELETE CASCADE,
-              FOREIGN KEY (libreria_id, libro_id) REFERENCES Libreria_Libro(libreria_id, libro_id)
-            );
-            """;
+ private static final String createValutazioniLibri = """
+    CREATE TABLE ValutazioniLibri (
+      user_id          VARCHAR(50) NOT NULL,
+      libreria_id      INT NOT NULL,
+      libro_id         BIGINT NOT NULL,
+    
+      stile_score      SMALLINT NOT NULL CHECK (stile_score BETWEEN 1 AND 5),
+      contenuto_score  SMALLINT NOT NULL CHECK (contenuto_score BETWEEN 1 AND 5),
+      gradimento_score SMALLINT NOT NULL CHECK (gradimento_score BETWEEN 1 AND 5),
+      originalita_score SMALLINT NOT NULL CHECK (originalita_score BETWEEN 1 AND 5),
+      qualita_score    SMALLINT NOT NULL CHECK (qualita_score BETWEEN 1 AND 5),
+      voto_complessivo SMALLINT NOT NULL CHECK (voto_complessivo BETWEEN 1 AND 5),
+    
+      stile_note       VARCHAR(256),
+      contenuto_note   VARCHAR(256),
+      gradimento_note  VARCHAR(256),
+      originalita_note VARCHAR(256),
+      qualita_note     VARCHAR(256),
+       commento_finale  VARCHAR(256),
+    
+      data_valutazione TIMESTAMP DEFAULT now(),
+    
+      PRIMARY KEY (user_id, libreria_id, libro_id),
+    
+      FOREIGN KEY (user_id) REFERENCES UtentiRegistrati(user_id) ON DELETE CASCADE,
+      FOREIGN KEY (libreria_id, libro_id) REFERENCES Libreria_Libro(libreria_id, libro_id) ON DELETE CASCADE
+    );
+""";
 
-    private static final String createConsigliLibri = """
-            CREATE TABLE ConsigliLibri (
-              user_id             VARCHAR(50) NOT NULL,
-              libreria_id         INT NOT NULL,
-              libro_letto_id      BIGINT NOT NULL,
-              libro_consigliato_id BIGINT NOT NULL,
-              commento            VARCHAR(256),
-              data_consiglio      TIMESTAMP DEFAULT now(),
-            
-              PRIMARY KEY (user_id, libreria_id, libro_letto_id, libro_consigliato_id),
-            
-              FOREIGN KEY (user_id) REFERENCES UtentiRegistrati(user_id) ON DELETE CASCADE,
-              FOREIGN KEY (libreria_id, libro_letto_id) REFERENCES Libreria_Libro(libreria_id, libro_id),
-              FOREIGN KEY (libro_consigliato_id) REFERENCES Libri(id)
-            );
-            """;
+  private static final String createConsigliLibri = """
+    CREATE TABLE ConsigliLibri (
+      user_id              VARCHAR(50) NOT NULL,
+      libreria_id          INT NOT NULL,
+      libro_letto_id       BIGINT NOT NULL,
+      libro_consigliato_id BIGINT NOT NULL,
+      commento             VARCHAR(256),
+      data_consiglio       TIMESTAMP DEFAULT now(),
+    
+      PRIMARY KEY (user_id, libreria_id, libro_letto_id, libro_consigliato_id),
+    
+      FOREIGN KEY (user_id) REFERENCES UtentiRegistrati(user_id) ON DELETE CASCADE,
+      FOREIGN KEY (libreria_id, libro_letto_id) REFERENCES Libreria_Libro(libreria_id, libro_id) ON DELETE CASCADE,
+      FOREIGN KEY (libro_consigliato_id) REFERENCES Libri(id) ON DELETE CASCADE
+    );
+""";
 
    
     public static void main(String[] args) {
