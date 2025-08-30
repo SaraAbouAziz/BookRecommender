@@ -45,10 +45,8 @@ import bookrecommender.utili.ViewsController;
  * @author Abou Aziz Sara Hesham Abdel Hamid 757004
  * @author Ben Mahjoub Ali 759560
  * @author Hidri Mohamed Taha 756235
- * @author Kahri Mohamed Ameur 754773
  * @author Zoghbani Lilia 759652
  * @version 1.0
- * @since 1.0
  */
 public class ConsigliaLibroController {
 

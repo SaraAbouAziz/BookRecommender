@@ -20,11 +20,9 @@ import java.util.Scanner;
  * @author Abou Aziz Sara Hesham Abdel Hamid 757004
  * @author Ben Mahjoub Ali 759560
  * @author Hidri Mohamed Taha 756235
- * @author Kahri Mohamed Ameur 754773
  * @author Zoghbani Lilia 759652
  * @see bookrecommender.utenti.GestoreSessione
  * @version 1.0
- * @since 1.0
  */
 public class TokenManager {
     /** Nome del file utilizzato per memorizzare il token di sessione. */
