@@ -24,6 +24,31 @@ import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+/**
+ * Controller per la vista di visualizzazione di tutte le valutazioni di un libro (all-valutazioni-view.fxml).
+ * <p>
+ * Questa classe gestisce l'interfaccia utente per visualizzare tutte le recensioni dettagliate
+ * di un libro specifico, mostrando i punteggi e le note per ogni criterio di valutazione.
+ * </p>
+ *
+ * <b>Responsabilità principali:</b>
+ * <ul>
+ *     <li>Caricare e visualizzare tutte le valutazioni dettagliate di un libro specifico.</li>
+ *     <li>Mostrare i punteggi per ogni criterio (stile, contenuto, gradevolezza, originalità, edizione).</li>
+ *     <li>Visualizzare le note associate a ciascun criterio e il commento finale.</li>
+ *     <li>Calcolare e mostrare il voto medio complessivo per ogni valutazione.</li>
+ *     <li>Gestire la navigazione per tornare alla vista precedente.</li>
+ *     <li>Controllare un'animazione di sfondo per migliorare l'esperienza utente.</li>
+ * </ul>
+ *
+ * @author Abou Aziz Sara Hesham Abdel Hamid 757004
+ * @author Ben Mahjoub Ali 759560
+ * @author Hidri Mohamed Taha 756235
+ * @author Kahri Mohamed Ameur 754773
+ * @author Zoghbani Lilia 759652
+ * @version 1.0
+ * @since 1.0
+ */
 public class AllValutazioniController {
 
     @FXML private Canvas backgroundCanvas;

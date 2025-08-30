@@ -18,7 +18,14 @@ import bookrecommender.utili.TokenManager;
  *     <li>Fornire un meccanismo per ripristinare una sessione da un token salvato.</li>
  * </ul>
  *
+ * @author Abou Aziz Sara Hesham Abdel Hamid 757004
+ * @author Ben Mahjoub Ali 759560
+ * @author Hidri Mohamed Taha 756235
+ * @author Kahri Mohamed Ameur 754773
+ * @author Zoghbani Lilia 759652
  * @see TokenManager
+ * @version 1.0
+ * @since 1.0
  */
 public class GestoreSessione {
     /** L'unica istanza della classe (Singleton). */

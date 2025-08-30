@@ -42,7 +42,11 @@ import bookrecommender.utili.ViewsController;
  * applica validazioni di business (es. nessun consiglio duplicato, non consigliare lo stesso libro,
  * massimo tre consigli) prima di inviare le richieste di persistenza.</p>
  *
- * @author Sara
+ * @author Abou Aziz Sara Hesham Abdel Hamid 757004
+ * @author Ben Mahjoub Ali 759560
+ * @author Hidri Mohamed Taha 756235
+ * @author Kahri Mohamed Ameur 754773
+ * @author Zoghbani Lilia 759652
  * @version 1.0
  * @since 1.0
  */

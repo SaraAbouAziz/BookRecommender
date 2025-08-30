@@ -8,8 +8,14 @@ package bookrecommender;
  * Funge da wrapper per il lancio dell'applicazione, garantendo che eventuali
  * errori critici in fase di avvio vengano catturati e registrati.
  *
+ * @author Abou Aziz Sara Hesham Abdel Hamid 757004
+ * @author Ben Mahjoub Ali 759560
+ * @author Hidri Mohamed Taha 756235
+ * @author Kahri Mohamed Ameur 754773
+ * @author Zoghbani Lilia 759652
  * @see GUI
  * @version 1.0
+ * @since 1.0
  */
 public class BookRecommender {
     /**
