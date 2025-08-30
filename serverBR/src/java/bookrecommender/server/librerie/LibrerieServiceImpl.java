@@ -26,10 +26,14 @@ import java.util.List;
  *     <li>Gestire le eccezioni e loggare le operazioni in modo appropriato, restituendo valori
  *         semplici (boolean, liste vuote) al client per semplificare la gestione degli errori remoti.</li>
  * </ul>
- *
+ * @author Abou Aziz Sara Hesham Abdel Hamid 757004
+ * @author Ben Mahjoub Ali 759560
+ * @author Hidri Mohamed Taha 756235
+ * @author Zoghbani Lilia 759652
  * @see LibrerieService
  * @see LibrerieDAO
  * @see JdbcLibrerieDAO
+ * @version 1.0
  */
 public class LibrerieServiceImpl extends UnicastRemoteObject implements LibrerieService {
     

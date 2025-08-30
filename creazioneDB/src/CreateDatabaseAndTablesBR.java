@@ -14,6 +14,11 @@ import java.util.List;
  *
  * Nota: il comando di DROP/CREATE database richiede privilegi adeguati (tipicamente l'utente postgres
  * o un utente con permessi CREATE DATABASE).
+ * @author Abou Aziz Sara Hesham Abdel Hamid 757004
+ * @author Ben Mahjoub Ali 759560
+ * @author Hidri Mohamed Taha 756235
+ * @author Zoghbani Lilia 759652
+ * @version 1.0
  */
 public class CreateDatabaseAndTablesBR {
     private static Connection conn;

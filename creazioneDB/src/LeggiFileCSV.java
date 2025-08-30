@@ -11,8 +11,11 @@ import java.util.List;
  * Classe per la lettura diretta di file CSV e popolamento del database.
  * Sostituisce le classi Book e BookReader per operazioni di caricamento dati.
  * 
- * @author Taha
- * @author Sara
+ * @author Abou Aziz Sara Hesham Abdel Hamid 757004
+ * @author Ben Mahjoub Ali 759560
+ * @author Hidri Mohamed Taha 756235
+ * @author Zoghbani Lilia 759652
+ * @version 1.0
  */
 public class LeggiFileCSV {
 

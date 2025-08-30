@@ -12,9 +12,13 @@ import java.util.List;
  * Questa interfaccia astrae le operazioni di persistenza per l'entità {@link Consiglio},
  * seguendo il pattern Data Access Object (DAO). Le implementazioni di questa interfaccia
  * si occuperanno della comunicazione con lo strato di persistenza (es. un database tramite JDBC).
- *
+ * @author Abou Aziz Sara Hesham Abdel Hamid 757004
+ * @author Ben Mahjoub Ali 759560
+ * @author Hidri Mohamed Taha 756235
+ * @author Zoghbani Lilia 759652
  * @see JdbcConsigliDAO
  * @see Consiglio
+ * @version 1.0
  */
 public interface ConsigliDAO {
 

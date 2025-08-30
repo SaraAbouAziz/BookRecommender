@@ -9,9 +9,13 @@ import java.util.List;
  * <p>
  * Questa interfaccia astrae le operazioni di persistenza per l'entità {@link Libreria},
  * seguendo il pattern Data Access Object (DAO).
- *
+ * @author Abou Aziz Sara Hesham Abdel Hamid 757004
+ * @author Ben Mahjoub Ali 759560
+ * @author Hidri Mohamed Taha 756235
+ * @author Zoghbani Lilia 759652
  * @see JdbcLibrerieDAO
  * @see Libreria
+ * @version 1.0
  */
 public interface LibrerieDAO {
     

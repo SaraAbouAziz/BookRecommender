@@ -40,9 +40,13 @@ import java.sql.SQLException;
  *     <li>Mantenere il server attivo per accettare le chiamate dai client.</li>
  * </ul>
  * L'applicazione rimane in esecuzione fino a quando non viene terminata manualmente.
- *
+ * @author Abou Aziz Sara Hesham Abdel Hamid 757004
+ * @author Ben Mahjoub Ali 759560
+ * @author Hidri Mohamed Taha 756235
+ * @author Zoghbani Lilia 759652
  * @see bookrecommender.server.utili.DBConnectionSingleton
  * @see java.rmi.registry.Registry
+ * @version 1.0
  */
 public class ServerMain {
     /**
