@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane xmlns="http://javafx.com/javafx/17.0.2-ea"
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="bookrecommender.consigli.ConsigliaLibroController"
+           fx:id="rootPane"
+           stylesheets="@styles.css"
+           prefHeight="700.0" prefWidth="900.0">
+
+    <children>
+        <Canvas fx:id="backgroundCanvas" />
+
+        <VBox alignment="TOP_CENTER" spacing="0">
+            <!-- Header standardizzato -->
+            <StackPane styleClass="view-header">
+                <padding>
+                    <Insets top="20" right="40" bottom="20" left="40"/>
+                </padding>
+                <HBox alignment="CENTER_LEFT">
+                    <Button fx:id="backButton" text="← Indietro" onAction="#handleCancel" styleClass="header-back-button"/>
+                </HBox>
+                <VBox alignment="CENTER" mouseTransparent="true">
+                    <Label text="Consiglia un Libro" styleClass="header-title"/>
+                    <Label fx:id="libroDaConsigliareLabel" text="Suggerisci libri per: NOME_LIBRO" styleClass="header-subtitle"/>
+                </VBox>
+            </StackPane>
+
+            <ScrollPane fitToWidth="true" fitToHeight="true" styleClass="library-scroll-pane" VBox.vgrow="ALWAYS">
+                <StackPane alignment="TOP_CENTER">
+                    <VBox alignment="TOP_CENTER" spacing="20" maxWidth="700">
+                        <padding>
+                            <Insets top="30" right="40" bottom="40" left="40"/>
+                        </padding>
+
+                        <!-- Sezione di ricerca -->
+                        <VBox spacing="15" styleClass="form-container">
+                            <Label text="1. Cerca e Aggiungi Libri" styleClass="form-title"/>
+                            <Label text="Cerca i libri che vuoi consigliare (massimo 3). Fai doppio click su un risultato per aggiungerlo alla lista." styleClass="suggestion-label"/>
+                            <TextField fx:id="searchField" promptText="Cerca per titolo o autore..." styleClass="search-field"/>
+                            <ListView fx:id="searchResultsView" prefHeight="180" styleClass="library-list-view"/>
+                        </VBox>
+
+                        <!-- Sezione libri selezionati -->
+                        <VBox spacing="15" styleClass="form-container">
+                            <Label text="2. Libri Selezionati" styleClass="form-title"/>
+                            <Label text="Questi sono i libri che stai per consigliare. Fai doppio click su un libro per rimuoverlo." styleClass="suggestion-label"/>
+                            <ListView fx:id="selectedBooksView" prefHeight="200" styleClass="library-list-view"/>
+                        </VBox>
+
+                        <!-- Sezione commento -->
+                        <VBox spacing="15" styleClass="form-container">
+                            <Label text="3. Aggiungi un Commento" styleClass="form-title"/>
+                            <Label text="Lascia un breve commento per spiegare perché consigli questi libri." styleClass="suggestion-label"/>
+                            <TextArea fx:id="commentArea" promptText="Il tuo commento (opzionale)..." prefHeight="100" styleClass="input-field"/>
+                        </VBox>
+
+                        <!-- Messaggio di errore/successo -->
+                        <Label fx:id="messageLabel" text="" styleClass="suggestion-label" minHeight="20"/>
+
+                        <!-- Pulsanti di azione -->
+                        <HBox spacing="15" alignment="CENTER_RIGHT">
+                            <Button text="Annulla" onAction="#handleCancel" styleClass="text-button"/>
+                            <Button fx:id="suggestButton" text="Invia Consiglio" onAction="#handleSuggest" styleClass="primary-button"/>
+                        </HBox>
+
+                    </VBox>
+                </StackPane>
+            </ScrollPane>
+        </VBox>
+    </children>
+</StackPane>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  File FXML per la schermata di benvenuto dell'applicazione BookRecommender.
+
+  Questa vista funge da punto di ingresso principale per l'utente, offrendo le opzioni
+  di navigazione iniziali come l'accesso, la registrazione o la ricerca di libri.
+
+  - Controller: bookrecommender.utili.BenvenutiController
+  - Stylesheet: styles.css
+  - Struttura: Un StackPane che sovrappone un Canvas per l'animazione di sfondo
+    al contenuto principale dell'interfaccia.
+-->
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane xmlns="http://javafx.com/javafx/17.0.2-ea"
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="bookrecommender.utili.BenvenutiController"
+           fx:id="rootPane"
+           stylesheets="@styles.css"
+           prefHeight="600.0" prefWidth="900.0">
+
+    <!-- Canvas utilizzato per renderizzare l'animazione delle particelle in background.
+         Essendo il primo figlio dello StackPane, viene posizionato dietro a tutti gli altri elementi. -->
+    <Canvas fx:id="backgroundCanvas" />
+
+    <!-- Contenitore principale per gli elementi dell'interfaccia utente. -->
+    <children>
+
+        <!-- Contenitore verticale che centra tutti gli elementi della schermata. -->
+        <VBox spacing="0" alignment="CENTER" prefWidth="Infinity">
+
+            <!-- Contenitore della schermata principale, contenente titolo, pulsanti e footer. -->
+            <VBox fx:id="mainContainer" alignment="CENTER" spacing="40" styleClass="main-container" visible="true" managed="true" prefHeight="700">
+                <padding>
+                    <Insets top="80" right="80" bottom="80" left="80" />
+                </padding>
+
+                <!-- Sezione del titolo e sottotitolo dell'applicazione. -->
+                <VBox alignment="CENTER" spacing="30">
+                    <Label fx:id="titleLabel" text="BookRecommender" styleClass="main-title"/>
+                    <Label fx:id="welcomeLabel" text="Scopri i tuoi prossimi libri preferiti" styleClass="subtitle"/>
+                </VBox>
+
+                <!-- Sezione contenente i pulsanti di navigazione principali. -->
+                <VBox alignment="CENTER" spacing="25" maxWidth="420">
+                    <!-- Pulsante per navigare alla schermata di login. Gestito da showLoginView() nel controller. -->
+                    <JFXButton fx:id="loginButton" text="Accedi" onAction="#showLoginView" styleClass="primary-button" />
+                    <!-- Pulsante per navigare alla schermata di registrazione. Gestito da showRegisterView() nel controller. -->
+                    <JFXButton fx:id="registerButton" text="Registrati" onAction="#showRegisterView" styleClass="secondary-button" />
+                    <!-- Pulsante per navigare alla schermata di ricerca libri. Gestito da showSearchView() nel controller. -->
+                    <JFXButton fx:id="searchButton" text="Cerca Libri" onAction="#showSearchView" styleClass="accent-button" />
+                </VBox>
+
+                <!-- Sezione footer con un messaggio di chiusura. -->
+                <VBox alignment="CENTER" spacing="15">
+                    <Label text="La tua libreria personale ti aspetta" styleClass="footer-text"/>
+                </VBox>
+            </VBox>
+
+        </VBox>
+    </children>
+</StackPane>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<!--
+  FXML per la schermata di registrazione:
+  - Form di registrazione con tutti i campi utente
+  - Validazione password e conferma
+  - Pulsante per tornare al menu principale
+  - stylesheets="@styles.css" per la formattazione
+  - fx:controller = RegistrazioneController
+-->
+<StackPane xmlns="http://javafx.com/javafx/17.0.2-ea"
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="bookrecommender.utenti.RegistrazioneController"
+           stylesheets="@styles.css">
+
+    <children>
+        <!-- Canvas per l'animazione di sfondo -->
+        <Canvas fx:id="backgroundCanvas" />
+
+        <VBox alignment="TOP_CENTER" spacing="0">
+            <!-- Header standardizzato -->
+            <StackPane styleClass="view-header">
+                <padding>
+                    <Insets top="20" right="40" bottom="20" left="40"/>
+                </padding>
+                <HBox alignment="CENTER_LEFT">
+                    <Button text="← Torna al menu" onAction="#onBack" styleClass="header-back-button"/>
+                </HBox>
+                <VBox alignment="CENTER" mouseTransparent="true">
+                    <Label text="Crea il tuo account" styleClass="header-title"/>
+                    <Label text="Unisciti a noi per scoprire nuovi libri" styleClass="header-subtitle"/>
+                </VBox>
+            </StackPane>
+
+            <!-- Contenuto del form centrato -->
+            <ScrollPane VBox.vgrow="ALWAYS" styleClass="library-scroll-pane" fitToWidth="true" fitToHeight="true" hbarPolicy="NEVER">
+                <StackPane> <!-- Questo StackPane si adatta alla viewport dello ScrollPane -->
+                    <!-- Questo VBox contiene il form e viene centrato dallo StackPane -->
+                    <VBox alignment="CENTER" spacing="15" styleClass="form-content-pane" maxWidth="420">
+                        <padding><Insets top="40" bottom="40" /></padding>
+                        <TextField fx:id="textFieldNome" promptText="Nome" styleClass="input-field"/>
+                        <TextField fx:id="textFieldCognome" promptText="Cognome" styleClass="input-field"/>
+                        <TextField fx:id="textFieldCodiceFiscale" promptText="Codice Fiscale" styleClass="input-field"/>
+                        <TextField fx:id="textFieldEmail" promptText="Email" styleClass="input-field"/>
+                        <TextField fx:id="textFieldIDUtente" promptText="Username" styleClass="input-field"/>
+                        <PasswordField fx:id="passwordField" promptText="Password" styleClass="input-field"/>
+                        <PasswordField fx:id="passwordFieldRipetiPassword" promptText="Conferma Password" styleClass="input-field"/>
+                        <Button fx:id="registerSubmitButton" text="Registrati" onAction="#handleRegister" styleClass="primary-button" prefWidth="320.0"/>
+                    </VBox>
+                </StackPane>
+            </ScrollPane>
+        </VBox>
+    </children>
+</StackPane>

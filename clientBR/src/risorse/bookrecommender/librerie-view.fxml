@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<!--
+  FXML per la gestione delle librerie personali con design moderno:
+  - Layout più pulito e organizzato
+  - Migliore gerarchia visiva
+  - Design responsive e user-friendly
+-->
+<StackPane xmlns="http://javafx.com/javafx/17"
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="bookrecommender.librerie.LibrerieController"
+           stylesheets="@styles.css"
+            prefHeight="700.0" prefWidth="1000.0">
+
+    <children>
+        <Canvas fx:id="backgroundCanvas" />
+        <!-- Container principale con sfondo gradiente -->
+        <VBox alignment="TOP_CENTER" spacing="0">
+
+            <!-- Header standardizzato -->
+<StackPane styleClass="view-header">
+    <padding>
+        <Insets top="20" right="40" bottom="20" left="40"/>
+    </padding>
+    <HBox alignment="CENTER_LEFT">
+        <Button text="← Torna alla Dashboard" onAction="#onBack" styleClass="header-back-button"/>
+    </HBox>
+    <VBox alignment="CENTER" mouseTransparent="true">
+        <Label text="📚 Le tue Librerie" styleClass="header-title"/>
+        <Label text="Crea, gestisci e visualizza le tue collezioni" styleClass="header-subtitle"/>
+    </VBox>
+</StackPane>
+
+
+
+            <!-- Contenuto principale -->
+            <ScrollPane fitToWidth="true" styleClass="library-scroll-pane">
+                <VBox spacing="25" alignment="TOP_CENTER" styleClass="library-content">
+                    <padding>
+                        <Insets top="20" right="40" bottom="40" left="40"/>
+                    </padding>
+
+                    <!-- Sezione creazione libreria -->
+                    <VBox spacing="20" maxWidth="1200" styleClass="library-create-section">
+                        <padding>
+                            <Insets top="25" right="25" bottom="25" left="25"/>
+                        </padding>
+                        
+                        <HBox alignment="CENTER_LEFT" spacing="10">
+                            <Label styleClass="section-icon" text="✨"/>
+                            <Label text="Crea Nuova Libreria" styleClass="section-title"/>
+                        </HBox>
+                        
+                        <HBox spacing="15" alignment="CENTER_LEFT">
+                            <TextField fx:id="nomeLibreriaField" 
+                                      promptText="Inserisci il nome della tua libreria..." 
+                                      styleClass="library-input-field" 
+                                      HBox.hgrow="ALWAYS"/>
+                            <Button fx:id="creaLibreriaButton" text="Crea" onAction="#creaLibreria" styleClass="library-create-button">
+                                <graphic>
+                                    <Label styleClass="button-icon" text="➕"/>
+                                </graphic>
+                            </Button>
+                        </HBox>
+                    </VBox>
+
+                    <!-- Layout principale con librerie e libri -->
+                    <HBox spacing="30" alignment="TOP_LEFT" maxWidth="1200" VBox.vgrow="ALWAYS">
+                        
+                        <!-- Pannello librerie -->
+                        <VBox spacing="20" prefWidth="400" styleClass="library-panel" HBox.hgrow="SOMETIMES">
+                            <padding>
+                                <Insets top="25" right="25" bottom="25" left="25"/>
+                            </padding>
+                            
+                            <HBox alignment="CENTER_LEFT" spacing="10">
+                                <Label styleClass="section-icon" text="📖"/>
+                                <Label text="Le Tue Librerie" styleClass="section-title"/>
+                            </HBox>
+                            
+                            <ListView fx:id="librerieListView" 
+                                     prefHeight="400"
+                                     styleClass="library-list-view" VBox.vgrow="ALWAYS"/>
+                            
+                            <!-- Controlli libreria -->
+                            <HBox spacing="10">
+                                <Button fx:id="eliminaLibreriaButton" text="Elimina" onAction="#eliminaLibreria" styleClass="library-danger-button" HBox.hgrow="ALWAYS">
+                                    <graphic>
+                                        <Label styleClass="button-icon" text="🗑"/>
+                                    </graphic>
+                                </Button>
+                            </HBox>
+                        </VBox>
+                        
+                        <!-- Pannello libri -->
+                        <VBox spacing="20" prefWidth="750" styleClass="library-panel" HBox.hgrow="ALWAYS">
+                            <padding>
+                                <Insets top="25" right="25" bottom="25" left="25"/>
+                            </padding>
+                            
+                            <HBox alignment="CENTER_LEFT" spacing="10">
+                                <Label text="📚" styleClass="section-icon"/>
+                                <Label text="Libri nella Libreria" styleClass="section-title"/>
+                            </HBox>
+                            
+                            <!-- Aggiunta libro -->
+                            <HBox spacing="12" alignment="CENTER_LEFT">
+                                <TextField fx:id="libroIdField" 
+                                          promptText="ID del libro..." 
+                                          styleClass="library-input-field" 
+                                          prefWidth="120"/>
+                                <Button fx:id="aggiungiLibroButton" 
+                                       text="➕ Aggiungi" 
+                                       onAction="#aggiungiLibro" 
+                                       styleClass="library-primary-button"/>
+                                <Button fx:id="rimuoviLibroButton" 
+                                       text="➖ Rimuovi" 
+                                       onAction="#rimuoviLibro" 
+                                       styleClass="library-warning-button"/>
+                            </HBox>
+                            
+                            <!-- Tabella libri -->
+                            <TableView fx:id="libriTableView" prefHeight="400" styleClass="library-table-view" VBox.vgrow="ALWAYS">
+                                <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                </columnResizePolicy>
+                                <columns>
+                                    <TableColumn fx:id="idLibroColumn" prefWidth="120.0" text="ID Libro" />
+                                    <TableColumn fx:id="titoloLibroColumn" minWidth="200.0" text="Titolo" />
+                                    <TableColumn fx:id="valutaColumn" prefWidth="100" text="Valuta" resizable="false" />
+                                    <TableColumn fx:id="consigliaColumn" prefWidth="100" text="Consiglia" resizable="false" />
+                                </columns>
+                                 <placeholder>
+                                    <VBox alignment="CENTER" spacing="15">
+                                        <Label text="📖" styleClass="placeholder-icon"/>
+                                        <Label text="Nessun libro in questa libreria" styleClass="placeholder-title"/>
+                                        <Label text="Seleziona una libreria per vedere i libri contenuti." styleClass="placeholder-text"/>
+                                    </VBox>
+                                </placeholder>
+                            </TableView>
+                        </VBox>
+                    </HBox>
+
+                    <!-- Sezione informazioni -->
+                    <VBox spacing="15" maxWidth="1200" styleClass="library-info-section">
+                        <padding>
+                            <Insets top="20" right="25" bottom="20" left="25"/>
+                        </padding>
+                        
+                        <HBox alignment="CENTER_LEFT" spacing="10">
+                            <Label text="💡" styleClass="section-icon"/>
+                            <Label text="Come Usare le Librerie" styleClass="section-title"/>
+                        </HBox>
+                        
+                        <VBox spacing="8">
+                            <Label text="• Crea librerie personali per organizzare i tuoi libri preferiti" styleClass="info-text"/>
+                            <Label text="• Aggiungi libri usando il loro ID (trovali nella sezione Cerca Libri)" styleClass="info-text"/>
+                            <Label text="• Gestisci le tue librerie: aggiungi, rimuovi libri o elimina librerie intere" styleClass="info-text"/>
+                        </VBox>
+                    </VBox>
+                </VBox>
+            </ScrollPane>
+        </VBox>
+    <StackPane fx:id="consigliaOverlayPane" visible="false" managed="false"
+                   alignment="CENTER" style="-fx-background-color: rgba(0, 0, 0, 0.7);">
+            <!-- Il contenuto di consiglia-libro-view.fxml verrà caricato qui -->
+        </StackPane>
+    </children>
+</StackPane>

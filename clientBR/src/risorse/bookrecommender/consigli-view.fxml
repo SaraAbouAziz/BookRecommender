@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+
+<StackPane xmlns="http://javafx.com/javafx/17.0.2-ea"
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="bookrecommender.consigli.ConsigliController"
+           fx:id="rootPane"
+           stylesheets="@styles.css"
+           prefHeight="700.0" prefWidth="900.0">
+
+    <children>
+        <Canvas fx:id="backgroundCanvas" />
+
+        <VBox alignment="TOP_CENTER" spacing="0">
+            <StackPane styleClass="view-header">
+                <padding>
+                    <Insets top="20" right="40" bottom="20" left="40"/>
+                </padding>
+                <HBox alignment="CENTER_LEFT">
+                    <Button fx:id="backButton" text="← Indietro" onAction="#handleBack" styleClass="header-back-button"/>
+                </HBox>
+                <VBox alignment="CENTER" mouseTransparent="true">
+                    <Label text="I Miei Consigli" styleClass="header-title"/>
+                    <Label fx:id="subtitleLabel" text="Gestisci i consigli che hai dato" styleClass="header-subtitle"/>
+                </VBox>
+            </StackPane>
+
+            <ScrollPane fitToWidth="true" fitToHeight="true" styleClass="library-scroll-pane" VBox.vgrow="ALWAYS">
+                <StackPane alignment="TOP_CENTER">
+                    <VBox alignment="TOP_CENTER" spacing="25" maxWidth="900">
+                        <padding>
+                            <Insets top="30" right="40" bottom="40" left="40"/>
+                        </padding>
+
+                        <!-- Lista consigli migliorata -->
+                        <VBox spacing="15" styleClass="form-container">
+                            <HBox alignment="CENTER_LEFT" spacing="10">
+                                <FontAwesomeIconView glyphName="LIGHTBULB_ALT" size="20" styleClass="form-icon"/>
+                                <Label text="I tuoi consigli" styleClass="form-title"/>
+                            </HBox>
+                            <Label text="Fai clic su un consiglio per modificarlo o eliminarlo" styleClass="suggestion-label"/>
+                            <ListView fx:id="consigliListView" prefHeight="350" styleClass="library-list-view"/>
+                        </VBox>
+
+                        <!-- Pannello di dettaglio e modifica -->
+                        <VBox fx:id="detailPanel" spacing="20" styleClass="form-container" visible="false" managed="false" minHeight="350">
+                            <!-- Info consiglio selezionato -->
+                            <VBox spacing="15" minHeight="120">
+                                <HBox alignment="CENTER_LEFT" spacing="10">
+                                    <FontAwesomeIconView glyphName="INFO_CIRCLE" size="18" styleClass="form-icon"/>
+                                    <Label text="Dettagli consiglio selezionato" styleClass="form-title"/>
+                                </HBox>
+                                <Label fx:id="selectedConsiglioInfo" text="" styleClass="suggestion-label" 
+                                       wrapText="true" prefHeight="80" maxHeight="120"/>
+                            </VBox>
+
+                            <!-- Editor commento -->
+                            <VBox spacing="10">
+                                <HBox alignment="CENTER_LEFT" spacing="10">
+                                    <FontAwesomeIconView glyphName="EDIT" size="18" styleClass="form-icon"/>
+                                    <Label text="Modifica il tuo commento" styleClass="form-title"/>
+                                </HBox>
+                                <TextArea fx:id="commentEditor" promptText="Scrivi qui il tuo commento personalizzato..." 
+                                         prefHeight="100" styleClass="input-field" wrapText="true"/>
+                            </VBox>
+
+                            <!-- Pulsanti azione -->
+                            <HBox spacing="15" alignment="CENTER">
+                                <Button fx:id="cancelButton" text="Annulla" onAction="#handleCancel" styleClass="text-button">
+                                    <graphic>
+                                        <FontAwesomeIconView glyphName="TIMES" size="16"/>
+                                    </graphic>
+                                </Button>
+                                <Button fx:id="deleteButton" text="Elimina Consiglio" onAction="#handleDelete" styleClass="secondary-button">
+                                    <graphic>
+                                        <FontAwesomeIconView glyphName="TRASH" size="16"/>
+                                    </graphic>
+                                </Button>
+                                <Button fx:id="saveButton" text="Salva Modifiche" onAction="#handleSave" styleClass="primary-button">
+                                    <graphic>
+                                        <FontAwesomeIconView glyphName="SAVE" size="16"/>
+                                    </graphic>
+                                </Button>
+                            </HBox>
+                        </VBox>
+
+                        <!-- Messaggio di stato -->
+                        <Label fx:id="messageLabel" text="" styleClass="suggestion-label" minHeight="20" wrapText="true"/>
+                    </VBox>
+                </StackPane>
+            </ScrollPane>
+        </VBox>
+    </children>
+</StackPane>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane prefHeight="760.0" prefWidth="1100.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bookrecommender.utenti.DashboardController">
+    <children>
+        <Canvas fx:id="backgroundCanvas" width="${backgroundCanvas.parent.width}" height="${backgroundCanvas.parent.height}" />
+        <VBox alignment="TOP_CENTER" spacing="0.0">
+            <children>
+                <!-- Header standardizzato -->
+                <StackPane styleClass="view-header">
+                    <padding>
+                        <Insets bottom="20.0" left="40.0" right="40.0" top="20.0" />
+                    </padding>
+                    <!-- Titolo e Sottotitolo al centro -->
+                    <VBox alignment="CENTER" mouseTransparent="true" spacing="5.0">
+                        <children>
+                            <HBox alignment="CENTER" spacing="15.0">
+                                <children>
+                                    <FontAwesomeIconView glyphName="USER" size="30" styleClass="avatar-icon" />
+                                    <Label styleClass="header-title" text="Dashboard Utente" />
+                                </children>
+                            </HBox>
+                            <Label fx:id="lblWelcome" styleClass="header-subtitle" text="Benvenuto, Utente!" />
+                        </children>
+                    </VBox>
+                    <!-- Pulsante di Logout a destra -->
+                    <HBox alignment="CENTER_LEFT">
+                        <children>
+                            <Button fx:id="btnLogout" onAction="#handleLogout" styleClass="logout-button" text=" ← Esci">
+                            </Button>
+                        </children>
+                    </HBox>
+                </StackPane>
+                <!-- Contenuto principale -->
+                <StackPane VBox.vgrow="ALWAYS">
+                    <VBox alignment="CENTER" maxWidth="420.0" spacing="30.0">
+                        <children>
+                            <JFXButton onAction="#handleSearch" styleClass="primary-button, dashboard-action-button" text="Cerca Libri">
+                                <graphic>
+                                    <FontAwesomeIconView fill="#081015" glyphName="SEARCH" size="22" />
+                                </graphic>
+                            </JFXButton>
+                            <JFXButton onAction="#handleViewLibraries" styleClass="accent-button, dashboard-action-button" text="Le Mie Librerie">
+                                <graphic>
+                                    <FontAwesomeIconView fill="#071000" glyphName="BOOK" size="22" />
+                                </graphic>
+                            </JFXButton>
+                            <JFXButton onAction="#handleRateBook" styleClass="secondary-button, dashboard-action-button" text="Le Mie Recensioni">
+                                <graphic>
+                                    <FontAwesomeIconView fill="WHITE" glyphName="STAR" size="22" />
+                                </graphic>
+                            </JFXButton>
+                            <JFXButton onAction="#handleRecommendBook" styleClass="primary-button, dashboard-action-button" text="I Miei Consigli">
+                                <graphic>
+                                    <FontAwesomeIconView fill="#081015" glyphName="LIGHTBULB_ALT" size="22" />
+                                </graphic>
+                            </JFXButton>
+                        </children>
+                    </VBox>
+                </StackPane>
+            </children>
+        </VBox>
+    </children>
+</StackPane>
