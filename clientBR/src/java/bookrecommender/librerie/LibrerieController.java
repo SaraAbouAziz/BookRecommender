@@ -46,6 +46,14 @@ import bookrecommender.condivisi.libri.Libro;
  *     <li>Navigare verso altre viste (es. dettagli libro, valutazione, consiglio) tramite {@link ViewsController}.</li>
  *     <li>Controllare un'animazione di sfondo {@link ParticleAnimation}.</li>
  * </ul>
+ *
+ * @author Abou Aziz Sara Hesham Abdel Hamid 757004
+ * @author Ben Mahjoub Ali 759560
+ * @author Hidri Mohamed Taha 756235
+ * @author Kahri Mohamed Ameur 754773
+ * @author Zoghbani Lilia 759652
+ * @version 1.0
+ * @since 1.0
  */
 public class LibrerieController implements Initializable {
 

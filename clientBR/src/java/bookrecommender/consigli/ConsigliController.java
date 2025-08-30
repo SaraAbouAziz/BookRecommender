@@ -43,6 +43,14 @@ import java.util.ResourceBundle;
  *     <li>Gestire la navigazione per tornare all'area privata.</li>
  *     <li>Controllare un'animazione di sfondo {@link ParticleAnimation}.</li>
  * </ul>
+ *
+ * @author Abou Aziz Sara Hesham Abdel Hamid 757004
+ * @author Ben Mahjoub Ali 759560
+ * @author Hidri Mohamed Taha 756235
+ * @author Kahri Mohamed Ameur 754773
+ * @author Zoghbani Lilia 759652
+ * @version 1.0
+ * @since 1.0
  */
 public class ConsigliController implements Initializable {
 
