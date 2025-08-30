@@ -16,6 +16,10 @@ import java.time.LocalDateTime;
  * di trasferire tutte le informazioni necessarie per visualizzare una valutazione in una
  * singola chiamata, senza che il client debba richiedere separatamente i dettagli del libro.
  *
+ * @author Abou Aziz Sara Hesham Abdel Hamid 757004
+ * @author Ben Mahjoub Ali 759560
+ * @author Hidri Mohamed Taha 756235
+ * @author Zoghbani Lilia 759652
  * @param userId L'identificativo dell'utente che ha effettuato la valutazione.
  * @param libroId L'identificativo del libro che è stato valutato.
  * @param titoloLibro Il titolo del libro valutato.
@@ -39,6 +43,7 @@ import java.time.LocalDateTime;
  * @see Valutazione
  * @see ValutazioneService
  * @see bookrecommender.valutazioni.ValutazioniController
+ * @version 1.0
  */
 public record ValutazioneDettagliata(
     String userId,

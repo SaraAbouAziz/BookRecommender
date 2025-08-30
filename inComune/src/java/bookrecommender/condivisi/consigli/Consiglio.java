@@ -14,6 +14,10 @@ import java.time.LocalDateTime;
  * La sua chiave primaria logica è composta da {@code userId}, {@code libreriaId},
  * {@code libroLettoId} e {@code libroConsigliatoId}.
  *
+ * @author Abou Aziz Sara Hesham Abdel Hamid 757004
+ * @author Ben Mahjoub Ali 759560
+ * @author Hidri Mohamed Taha 756235
+ * @author Zoghbani Lilia 759652
  * @param userId L'identificativo dell'utente che ha dato il consiglio.
  * @param libreriaId L'identificativo della libreria a cui appartiene il libro letto.
  * @param libroLettoId L'identificativo del libro letto per cui si dà il consiglio.
@@ -21,7 +25,7 @@ import java.time.LocalDateTime;
  * @param commento Un commento testuale opzionale associato al consiglio.
  * @param dataConsiglio La data e l'ora in cui il consiglio è stato registrato nel sistema.
  *                      Può essere {@code null} se l'oggetto rappresenta un consiglio non ancora persistito.
- * 
+ * @version 1.0
  */
 public record Consiglio(
     String userId,

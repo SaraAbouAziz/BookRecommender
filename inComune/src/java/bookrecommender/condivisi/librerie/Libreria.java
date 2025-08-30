@@ -16,12 +16,17 @@ import java.util.List;
  * {@code equals()}, {@code hashCode()}, {@code toString()} e i metodi di accesso
  * per ogni componente.
  *
+ * @author Abou Aziz Sara Hesham Abdel Hamid 757004
+ * @author Ben Mahjoub Ali 759560
+ * @author Hidri Mohamed Taha 756235
+ * @author Zoghbani Lilia 759652
  * @param libreriaId    L'identificativo univoco della libreria, generato dal database.
  * @param userId        L'ID dell'utente proprietario della libreria.
  * @param nomeLibreria  Il nome assegnato dall'utente alla libreria.
  * @param dataCreazione La data e l'ora in cui la libreria è stata creata.
  * @param libriIds      La lista degli ID dei libri contenuti in questa libreria.
  * @see java.io.Serializable
+ * @version 1.0
  */
 public record Libreria(Integer libreriaId, String userId, String nomeLibreria, LocalDateTime dataCreazione, List<Long> libriIds) implements Serializable {
     @Serial

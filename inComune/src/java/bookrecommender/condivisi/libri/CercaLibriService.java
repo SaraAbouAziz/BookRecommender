@@ -14,9 +14,14 @@ import java.util.List;
  * Tutte le operazioni definite possono lanciare una {@link RemoteException} per
  * segnalare problemi di comunicazione o errori durante l'esecuzione remota.
  *
+ * @author Abou Aziz Sara Hesham Abdel Hamid 757004
+ * @author Ben Mahjoub Ali 759560
+ * @author Hidri Mohamed Taha 756235
+ * @author Zoghbani Lilia 759652
  * @see java.rmi.Remote
  * @see java.rmi.RemoteException
  * @see Libro
+ * @version 1.0
  */
 public interface CercaLibriService extends Remote {
 

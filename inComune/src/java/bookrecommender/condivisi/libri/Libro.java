@@ -14,6 +14,10 @@ import java.io.Serializable;
  * {@code equals()}, {@code hashCode()}, {@code toString()} e i metodi di accesso
  * per ogni componente.
  *
+ * @author Abou Aziz Sara Hesham Abdel Hamid 757004
+ * @author Ben Mahjoub Ali 759560
+ * @author Hidri Mohamed Taha 756235
+ * @author Zoghbani Lilia 759652
  * @param id          L'identificativo univoco del libro.
  * @param titolo      Il titolo del libro.
  * @param autori      Il nome dell'autore o degli autori del libro.
@@ -23,6 +27,7 @@ import java.io.Serializable;
  * @param editore     La casa editrice del libro.
  * @param prezzo      Il prezzo di copertina del libro.
  * @see java.io.Serializable
+ * @version 1.0
  */
 public record Libro(Long id, String titolo, String autori, String anno, String descrizione, String categorie, String editore, String prezzo) implements Serializable {
     /** Campo per il controllo della versione durante la serializzazione. */

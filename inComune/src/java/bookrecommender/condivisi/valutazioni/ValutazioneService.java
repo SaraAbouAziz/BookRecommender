@@ -14,10 +14,15 @@ import java.util.Map;
  * Ogni metodo può lanciare una {@link RemoteException} per segnalare problemi
  * di comunicazione o errori avvenuti sul server durante l'esecuzione della chiamata.
  *
+ * @author Abou Aziz Sara Hesham Abdel Hamid 757004
+ * @author Ben Mahjoub Ali 759560
+ * @author Hidri Mohamed Taha 756235
+ * @author Zoghbani Lilia 759652
  * @see java.rmi.Remote
  * @see bookrecommender.server.valutazioni.ValutazioneServiceImpl
  * @see Valutazione
  * @see ValutazioneDettagliata
+ * @version 1.0
  */
 public interface ValutazioneService extends Remote {
     /**
