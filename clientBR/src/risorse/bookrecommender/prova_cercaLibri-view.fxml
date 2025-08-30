@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<!--
+  FXML: Schermata di ricerca libri - 4 modalità
+    - Cerca per ID
+    - Cerca per Titolo
+    - Cerca per Autore
+    - Cerca per Autore + Anno
+  Stile coerente con l'app fornita (styles.css)
+  Controller: bookrecommender.utili.SearchController
+-->
+<StackPane xmlns="http://javafx.com/javafx/11.0.1"
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="bookrecommender.libri.CercaLibriController"
+           fx:id="rootPane"
+           stylesheets="@styles.css"
+           prefHeight="600.0" prefWidth="900.0">
+
+    <!-- definizioni non-Node (ToggleGroup) -->
+    <fx:define>
+        <ToggleGroup fx:id="searchModeGroup" />
+    </fx:define>
+
+    <children>
+          <VBox alignment="CENTER" spacing="40" styleClass="form-container" prefHeight="700">
+            <padding>
+                <Insets top="80" right="80" bottom="80" left="80" />
+            </padding>
+
+            <!-- Container principale  -->
+            <VBox fx:id="mainContainer" alignment="CENTER" spacing="24" prefWidth="760">
+                <padding>
+                    <Insets top="48" right="48" bottom="48" left="48"/>
+                </padding>
+
+                <!-- Titolo form -->
+                <Label text="Ricerca Libri" styleClass="form-title"/>
+
+                <!-- Card contenente il form di ricerca -->
+                <VBox fx:id="formContainer" spacing="18" alignment="TOP_CENTER" maxWidth="680" styleClass="form-container">
+                    <padding>
+                        <Insets top="18" right="18" bottom="18" left="18"/>
+                    </padding>
+
+                    <!-- Modalità di ricerca: RadioButtons in ToggleGroup -->
+                        <HBox spacing="12" alignment="CENTER_LEFT">
+            <Label text="Modalità:" styleClass="suggestion-label" />
+            <!-- NON mettere ToggleGroup qui -->
+            <RadioButton fx:id="rbById" text="Per ID" toggleGroup="$searchModeGroup" />
+            <RadioButton fx:id="rbByTitle" text="Per Titolo" toggleGroup="$searchModeGroup" selected="true" />
+            <RadioButton fx:id="rbByAuthor" text="Per Autore" toggleGroup="$searchModeGroup" />
+            <RadioButton fx:id="rbByAuthorYear" text="Autore + Anno" toggleGroup="$searchModeGroup" />
+        </HBox>
+                    <!-- CAMPOS: ogni gruppo ha fx:id per poter essere mostrato/nascosto dal controller -->
+                    <VBox spacing="12" prefWidth="Infinity">
+
+                        <!-- ID -->
+                        <HBox fx:id="idBox" spacing="10" alignment="CENTER_LEFT" visible="false" managed="false">
+                            <Label text="ID:" minWidth="80" />
+                            <TextField fx:id="idField" promptText="Inserisci ID" styleClass="input-field" />
+                        </HBox>
+
+                        <!-- Titolo -->
+                        <HBox fx:id="titleBox" spacing="10" alignment="CENTER_LEFT">
+                            <Label text="Titolo:" minWidth="80" />
+                            <TextField fx:id="titleField" promptText="Inserisci titolo (parziale ok)" styleClass="search-field" />
+                        </HBox>
+
+                        <!-- Autore -->
+                        <HBox fx:id="authorBox" spacing="10" alignment="CENTER_LEFT" visible="false" managed="false">
+                            <Label text="Autore:" minWidth="80" />
+                            <TextField fx:id="authorField" promptText="Nome o cognome autore" styleClass="search-field" />
+                        </HBox>
+
+                        <!-- Autore + Anno -->
+                        <HBox fx:id="authorYearBox" spacing="10" alignment="CENTER_LEFT" visible="false" managed="false">
+                            <Label text="Autore:" minWidth="80" />
+                            <TextField fx:id="authorYearAuthorField" promptText="Nome o cognome autore" styleClass="input-field" />
+                            <Label text="Anno:" minWidth="60" />
+                            <TextField fx:id="authorYearField" promptText="YYYY" maxWidth="100" styleClass="input-field" />
+                        </HBox>
+
+                    </VBox>
+
+                    <!-- Azioni: Cerca / Pulisci / Indietro -->
+                    <HBox spacing="12" alignment="CENTER_RIGHT">
+                        <Label fx:id="messageLabel" text="" styleClass="suggestion-label" />
+
+                        <Pane HBox.hgrow="ALWAYS" />
+
+                        <Button fx:id="clearButton" text="Pulisci" onAction="#onClear" styleClass="text-button" />
+                        <Button fx:id="searchButton" text="Cerca" onAction="#onSearch" styleClass="primary-button" minWidth="140" />
+                        <Button fx:id="backButton" text="Indietro" onAction="#onBack" styleClass="text-button" />
+                    </HBox>
+
+                    <!-- Tabella risultati -->
+                    <TableView fx:id="resultsTable" prefHeight="240" prefWidth="640">
+                        <columns>
+                            <TableColumn fx:id="colId" text="ID" prefWidth="80" />
+                            <TableColumn fx:id="colTitle" text="Titolo" prefWidth="300" />
+                            <TableColumn fx:id="colAuthor" text="Autore" prefWidth="180" />
+                            <TableColumn fx:id="colYear" text="Anno" prefWidth="80" />
+                        </columns>
+                    </TableView>
+
+                </VBox>
+
+            </VBox>
+
+        </VBox>
+    </children>
+</StackPane>

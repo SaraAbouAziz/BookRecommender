@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+
+<StackPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" 
+           fx:controller="bookrecommender.valutazioni.ValutazioneCompletaController"
+           styleClass="root"
+           stylesheets="@styles.css">
+    
+    <!-- Canvas per l'animazione di sfondo  -->
+    <Canvas fx:id="backgroundCanvas" />
+    
+    <!-- Contenuto principale -->
+    <VBox spacing="0" alignment="TOP_CENTER">
+        
+        <!-- Header standardizzato -->
+        <StackPane styleClass="view-header">
+            <padding>
+                <Insets top="20" right="40" bottom="20" left="40"/>
+            </padding>
+            <HBox alignment="CENTER_LEFT">
+                <Button fx:id="btnTornaIndietro" text="← Indietro" onAction="#tornaAlleLibrerie" styleClass="header-back-button"/>
+            </HBox>
+            <VBox alignment="CENTER" mouseTransparent="true">
+                <Label fx:id="lblTitoloLibro" text="Valutazione Libro" styleClass="header-title"/>
+                <Label fx:id="lblAutoreLibro" text="Esprimi la tua opinione dettagliata" styleClass="header-subtitle"/>
+            </VBox>
+        </StackPane>
+        
+        <!-- Container principale della valutazione -->
+        <ScrollPane fitToWidth="true" fitToHeight="true" styleClass="library-scroll-pane" VBox.vgrow="ALWAYS">
+            <StackPane alignment="TOP_CENTER">
+                <VBox spacing="20" alignment="TOP_CENTER" maxWidth="700">
+                    <padding>
+                        <Insets top="30" right="40" bottom="40" left="40"/>
+                    </padding>
+                    <!-- Stile di Scrittura -->
+                    <VBox spacing="15" styleClass="form-container">
+                        <HBox alignment="CENTER_LEFT" spacing="15">
+                            <Label text="✍️" styleClass="section-icon"/>
+                            <Label text="Stile di Scrittura" styleClass="form-title"/>
+                        </HBox>
+                        <HBox spacing="10" alignment="CENTER_LEFT" styleClass="stelle-container">
+                            <Button fx:id="stile1" styleClass="stella-button" onAction="#selezionaStile1"/>
+                            <Button fx:id="stile2" styleClass="stella-button" onAction="#selezionaStile2"/>
+                            <Button fx:id="stile3" styleClass="stella-button" onAction="#selezionaStile3"/>
+                            <Button fx:id="stile4" styleClass="stella-button" onAction="#selezionaStile4"/>
+                            <Button fx:id="stile5" styleClass="stella-button" onAction="#selezionaStile5"/>
+                        </HBox>
+                        <TextArea fx:id="stileNote" promptText="Note personali sullo stile (max 256 caratteri)" 
+                                  styleClass="input-field" prefRowCount="2" wrapText="true"/>
+                    </VBox>
+                    
+                    <!-- Contenuto e Trama -->
+                    <VBox spacing="15" styleClass="form-container">
+                        <HBox alignment="CENTER_LEFT" spacing="15">
+                            <Label text="📚" styleClass="section-icon"/>
+                            <Label text="Contenuto e Trama" styleClass="form-title"/>
+                        </HBox>
+                        <HBox spacing="10" alignment="CENTER_LEFT" styleClass="stelle-container">
+                            <Button fx:id="contenuto1" styleClass="stella-button" onAction="#selezionaContenuto1"/>
+                            <Button fx:id="contenuto2" styleClass="stella-button" onAction="#selezionaContenuto2"/>
+                            <Button fx:id="contenuto3" styleClass="stella-button" onAction="#selezionaContenuto3"/>
+                            <Button fx:id="contenuto4" styleClass="stella-button" onAction="#selezionaContenuto4"/>
+                            <Button fx:id="contenuto5" styleClass="stella-button" onAction="#selezionaContenuto5"/>
+                        </HBox>
+                        <TextArea fx:id="contenutoNote" promptText="Note personali sul contenuto (max 256 caratteri)" 
+                                  styleClass="input-field" prefRowCount="2" wrapText="true"/>
+                    </VBox>
+                    
+                    <!-- Gradevolezza di Lettura -->
+                    <VBox spacing="15" styleClass="form-container">
+                        <HBox alignment="CENTER_LEFT" spacing="15">
+                            <Label text="😊" styleClass="section-icon"/>
+                            <Label text="Gradevolezza di Lettura" styleClass="form-title"/>
+                        </HBox>
+                        <HBox spacing="10" alignment="CENTER_LEFT" styleClass="stelle-container">
+                            <Button fx:id="gradevolezza1" styleClass="stella-button" onAction="#selezionaGradevolezza1"/>
+                            <Button fx:id="gradevolezza2" styleClass="stella-button" onAction="#selezionaGradevolezza2"/>
+                            <Button fx:id="gradevolezza3" styleClass="stella-button" onAction="#selezionaGradevolezza3"/>
+                            <Button fx:id="gradevolezza4" styleClass="stella-button" onAction="#selezionaGradevolezza4"/>
+                            <Button fx:id="gradevolezza5" styleClass="stella-button" onAction="#selezionaGradevolezza5"/>
+                        </HBox>
+                        <TextArea fx:id="gradevolezzaNote" promptText="Note personali sulla gradevolezza (max 256 caratteri)" 
+                                  styleClass="input-field" prefRowCount="2" wrapText="true"/>
+                    </VBox>
+                    
+                    <!-- Originalità e Creatività -->
+                    <VBox spacing="15" styleClass="form-container">
+                        <HBox alignment="CENTER_LEFT" spacing="15">
+                            <Label text="💡" styleClass="section-icon"/>
+                            <Label text="Originalità e Creatività" styleClass="form-title"/>
+                        </HBox>
+                        <HBox spacing="10" alignment="CENTER_LEFT" styleClass="stelle-container">
+                            <Button fx:id="originalita1" styleClass="stella-button" onAction="#selezionaOriginalita1"/>
+                            <Button fx:id="originalita2" styleClass="stella-button" onAction="#selezionaOriginalita2"/>
+                            <Button fx:id="originalita3" styleClass="stella-button" onAction="#selezionaOriginalita3"/>
+                            <Button fx:id="originalita4" styleClass="stella-button" onAction="#selezionaOriginalita4"/>
+                            <Button fx:id="originalita5" styleClass="stella-button" onAction="#selezionaOriginalita5"/>
+                        </HBox>
+                        <TextArea fx:id="originalitaNote" promptText="Note personali sull'originalità (max 256 caratteri)" 
+                                  styleClass="input-field" prefRowCount="2" wrapText="true"/>
+                    </VBox>
+                    
+                    <!-- Qualità dell'Edizione -->
+                    <VBox spacing="15" styleClass="form-container">
+                        <HBox alignment="CENTER_LEFT" spacing="15">
+                            <Label text="📖" styleClass="section-icon"/>
+                            <Label text="Qualità dell'Edizione" styleClass="form-title"/>
+                        </HBox>
+                        <HBox spacing="10" alignment="CENTER_LEFT" styleClass="stelle-container">
+                            <Button fx:id="edizione1" styleClass="stella-button" onAction="#selezionaEdizione1"/>
+                            <Button fx:id="edizione2" styleClass="stella-button" onAction="#selezionaEdizione2"/>
+                            <Button fx:id="edizione3" styleClass="stella-button" onAction="#selezionaEdizione3"/>
+                            <Button fx:id="edizione4" styleClass="stella-button" onAction="#selezionaEdizione4"/>
+                            <Button fx:id="edizione5" styleClass="stella-button" onAction="#selezionaEdizione5"/>
+                        </HBox>
+                        <TextArea fx:id="edizioneNote" promptText="Note personali sull'edizione (max 256 caratteri)" 
+                                  styleClass="input-field" prefRowCount="2" wrapText="true"/>
+                    </VBox>
+                    
+                    <!-- Commento Finale -->
+                    <VBox spacing="15" styleClass="form-container">
+                        <HBox alignment="CENTER_LEFT" spacing="15">
+                            <Label text="⭐" styleClass="section-icon"/>
+                            <Label text="Commento Finale" styleClass="form-title"/>
+                        </HBox>
+                        <TextArea fx:id="commentoFinale" promptText="Commento generale sul libro (max 256 caratteri)" 
+                                  styleClass="input-field" prefRowCount="3" wrapText="true"/>
+                    </VBox>
+                    
+                    <!-- Voto Finale Calcolato -->
+                    <VBox spacing="15" styleClass="form-container" alignment="CENTER">
+                        <HBox alignment="CENTER_LEFT" spacing="15">
+                            <Label text="🏆" styleClass="section-icon"/>
+                            <Label text="Voto Finale Calcolato" styleClass="form-title"/>
+                        </HBox>
+                        <HBox alignment="CENTER" spacing="10">
+                            <Label fx:id="lblVotoFinale" text="0.0" styleClass="header-title"/>
+                            <Label text="/ 5.0" styleClass="header-subtitle"/>
+                        </HBox>
+                        <Label text="(Media dei punteggi per tutti i criteri)" styleClass="suggestion-label"/>
+                    </VBox>
+                    
+                    <!-- Pulsanti di azione -->
+                    <HBox spacing="15" alignment="CENTER_RIGHT">
+                        <Button fx:id="btnAnnulla" text="Annulla" 
+                                styleClass="text-button" onAction="#annullaValutazione"/>
+                        <Button fx:id="btnSalva" text="Salva Valutazione" 
+                                styleClass="primary-button" onAction="#salvaValutazione"/>
+                    </HBox>
+                </VBox>
+            </StackPane>
+        </ScrollPane>
+    </VBox>
+</StackPane>

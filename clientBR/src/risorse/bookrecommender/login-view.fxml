@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<!--
+  FXML per la schermata di login:
+  - Form di accesso con username e password
+  - Pulsante per tornare al menu principale
+  - stylesheets="@styles.css" per la formattazione
+  - fx:controller = LoginController
+-->
+<StackPane xmlns="http://javafx.com/javafx/17.0.2-ea"
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="bookrecommender.utenti.LoginController"
+           stylesheets="@styles.css" >
+
+    <children>
+        <!-- Canvas per l'animazione di sfondo -->
+        <Canvas fx:id="backgroundCanvas" />
+
+        <VBox alignment="TOP_CENTER" spacing="0">
+            <!-- Header standardizzato -->
+            <StackPane styleClass="view-header">
+                <padding>
+                    <Insets top="20" right="40" bottom="20" left="40"/>
+                </padding>
+                <HBox alignment="CENTER_LEFT">
+                    <Button text="← Torna al menu" onAction="#onBack" styleClass="header-back-button"/>
+                </HBox>
+                <VBox alignment="CENTER" mouseTransparent="true">
+                    <Label text="Accedi al tuo account" styleClass="header-title"/>
+                    <Label text="Inserisci le tue credenziali per continuare" styleClass="header-subtitle"/>
+                </VBox>
+            </StackPane>
+
+            <!-- Contenuto del form centrato -->
+            <StackPane VBox.vgrow="ALWAYS" styleClass="login-background">
+                <VBox alignment="CENTER" spacing="20" maxWidth="320">
+                    <VBox spacing="5">
+                        <Label text="Username o Email" styleClass="form-label"/>
+                        <TextField fx:id="usernameField" promptText="Il tuo username o email" styleClass="input-field"/>
+                    </VBox>
+                    <VBox spacing="5">
+                        <Label text="Password" styleClass="form-label"/>
+                        <PasswordField fx:id="passwordField" promptText="La tua password" styleClass="input-field"/>
+                    </VBox>
+                    <Button fx:id="loginSubmitButton" text="Accedi" onAction="#handleLogin" styleClass="primary-button" prefWidth="320.0"/>
+                </VBox>
+            </StackPane>
+        </VBox>
+    </children>
+</StackPane>
