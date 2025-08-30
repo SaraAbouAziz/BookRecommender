@@ -13,8 +13,13 @@ import java.rmi.RemoteException;
  * Questa interfaccia è il contratto tra il client e il server per tutto ciò
  * che riguarda la gestione degli account utente.
  *
+ * @author Abou Aziz Sara Hesham Abdel Hamid 757004
+ * @author Ben Mahjoub Ali 759560
+ * @author Hidri Mohamed Taha 756235
+ * @author Zoghbani Lilia 759652
  * @see bookrecommender.server.utenti.UtentiServiceImpl
  * @see Utenti
+ * @version 1.0
  */
 public interface UtentiService extends Remote {
     

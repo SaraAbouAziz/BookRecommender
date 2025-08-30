@@ -15,6 +15,10 @@ import java.time.LocalDateTime;
  * <p>
  * La sua chiave primaria logica è la combinazione di {@code userId} e {@code libroId}.
  *
+ * @author Abou Aziz Sara Hesham Abdel Hamid 757004
+ * @author Ben Mahjoub Ali 759560
+ * @author Hidri Mohamed Taha 756235
+ * @author Zoghbani Lilia 759652
  * @param userId L'identificativo dell'utente che ha effettuato la valutazione.
  * @param libroId L'identificativo del libro che è stato valutato.
  * @param nomeLibreria Il nome della libreria dell'utente da cui è stata avviata la valutazione.
@@ -35,6 +39,7 @@ import java.time.LocalDateTime;
  *
  * @see ValutazioneService
  * @see ValutazioneDettagliata
+ * @version 1.0
  */
 public record Valutazione(
     String userId,

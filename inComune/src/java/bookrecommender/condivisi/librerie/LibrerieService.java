@@ -4,6 +4,22 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.List;
 
+/**
+ * Interfaccia del servizio RMI per la gestione delle librerie personali degli utenti.
+ * <p>
+ * Definisce le operazioni remote che il client può invocare sul server per
+ * gestire le librerie personali degli utenti, inclusa la creazione, eliminazione,
+ * aggiunta e rimozione di libri dalle librerie.
+ * <p>
+ * Questa interfaccia è il contratto tra il client e il server per tutto ciò
+ * che riguarda la gestione delle librerie personali.
+ *
+ * @author Abou Aziz Sara Hesham Abdel Hamid 757004
+ * @author Ben Mahjoub Ali 759560
+ * @author Hidri Mohamed Taha 756235
+ * @author Zoghbani Lilia 759652
+ * @version 1.0
+ */
 public interface LibrerieService extends Remote {
     
     /**

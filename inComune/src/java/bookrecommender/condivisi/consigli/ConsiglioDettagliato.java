@@ -14,6 +14,10 @@ import java.time.LocalDateTime;
  * costruisce tipicamente tramite query SQL con JOIN per recuperare i nomi
  * associati agli ID.
  *
+ * @author Abou Aziz Sara Hesham Abdel Hamid 757004
+ * @author Ben Mahjoub Ali 759560
+ * @author Hidri Mohamed Taha 756235
+ * @author Zoghbani Lilia 759652
  * @param userId L'identificativo dell'utente che ha dato il consiglio.
  * @param libreriaId L'identificativo della libreria di riferimento.
  * @param nomeLibreria Il nome testuale della libreria.
@@ -25,6 +29,7 @@ import java.time.LocalDateTime;
  * @param autoreLibroConsigliato L'autore o gli autori del libro consigliato.
  * @param commento Il commento opzionale lasciato dall'utente.
  * @param dataConsiglio La data e l'ora in cui il consiglio è stato creato.
+ * @version 1.0
  */
 public record ConsiglioDettagliato(
     String userId,
