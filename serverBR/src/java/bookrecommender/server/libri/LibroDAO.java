@@ -11,9 +11,13 @@ import java.util.List;
  * seguendo il pattern Data Access Object (DAO). Fornisce metodi per la creazione,
  * il recupero e la ricerca di libri, nascondendo i dettagli implementativi
  * dello strato di persistenza.
- *
+ * @author Abou Aziz Sara Hesham Abdel Hamid 757004
+ * @author Ben Mahjoub Ali 759560
+ * @author Hidri Mohamed Taha 756235
+ * @author Zoghbani Lilia 759652
  * @see Libro
  * @see JdbcCercaLibriDAO
+ * @version 1.0
  */
 public interface LibroDAO {
     

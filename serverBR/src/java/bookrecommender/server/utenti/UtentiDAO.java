@@ -10,9 +10,13 @@ import bookrecommender.condivisi.utenti.Utenti;
  * seguendo il pattern Data Access Object (DAO). In questo modo, il resto dell'applicazione
  * può interagire con i dati degli utenti senza conoscere i dettagli implementativi
  * dello strato di persistenza (es. JDBC, JPA, etc.).
- *
+ * @author Abou Aziz Sara Hesham Abdel Hamid 757004
+ * @author Ben Mahjoub Ali 759560
+ * @author Hidri Mohamed Taha 756235
+ * @author Zoghbani Lilia 759652
  * @see Utenti
  * @see JdbcUtentiDAO
+ * @version 1.0
  */
 public interface UtentiDAO {
     

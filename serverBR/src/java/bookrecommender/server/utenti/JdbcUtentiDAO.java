@@ -27,9 +27,13 @@ import java.util.List;
  *         (tipicamente un Service Layer) di controllare il ciclo di vita della transazione
  *         (commit/rollback) quando più operazioni devono essere eseguite in modo atomico.</li>
  * </ul>
- *
+ * @author Abou Aziz Sara Hesham Abdel Hamid 757004
+ * @author Ben Mahjoub Ali 759560
+ * @author Hidri Mohamed Taha 756235
+ * @author Zoghbani Lilia 759652
  * @see UtentiDAO
  * @see DBConnectionSingleton
+ * @version 1.0
  */
 public class JdbcUtentiDAO implements UtentiDAO {
 

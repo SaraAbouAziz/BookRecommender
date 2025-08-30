@@ -24,11 +24,16 @@ import java.util.*;
  * loggandole e incapsulandole in una {@link RemoteException} per notificare il client
  * di un errore avvenuto sul server, come richiesto dal pattern RMI.
  *
+ * @author Abou Aziz Sara Hesham Abdel Hamid 757004
+ * @author Ben Mahjoub Ali 759560
+ * @author Hidri Mohamed Taha 756235
+ * @author Zoghbani Lilia 759652
  * @see ValutazioneService
  * @see ValutazioniDAO
  * @see JdbcValutazioniDAO
  * @see java.rmi.server.UnicastRemoteObject
  * @see java.rmi.RemoteException
+ * @version 1.0
  */
 public class ValutazioneServiceImpl extends UnicastRemoteObject implements ValutazioneService {
 

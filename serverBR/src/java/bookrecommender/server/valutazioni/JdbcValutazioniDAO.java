@@ -22,9 +22,14 @@ import java.util.*;
  * catturate e gestite internamente, restituendo valori di default (es. {@code false},
  * {@code null}, o collezioni vuote) per indicare un fallimento.
  *
+ * @author Abou Aziz Sara Hesham Abdel Hamid 757004
+ * @author Ben Mahjoub Ali 759560
+ * @author Hidri Mohamed Taha 756235
+ * @author Zoghbani Lilia 759652
  * @see ValutazioniDAO
  * @see ValutazioneDettagliata
  * @see DBConnectionSingleton
+ * @version 1.0
  */
 public class JdbcValutazioniDAO implements ValutazioniDAO {
 

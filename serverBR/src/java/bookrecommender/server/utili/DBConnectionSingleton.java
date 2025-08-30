@@ -17,9 +17,13 @@ import java.sql.SQLException;
  * </ul>
  * L'uso di {@code volatile} garantisce che le modifiche ai parametri di connessione siano
  * visibili a tutti i thread.
- *
+ * @author Abou Aziz Sara Hesham Abdel Hamid 757004
+ * @author Ben Mahjoub Ali 759560
+ * @author Hidri Mohamed Taha 756235
+ * @author Zoghbani Lilia 759652
  * @see java.sql.Connection
  * @see java.sql.DriverManager
+ * @version 1.0
  */
 public final class DBConnectionSingleton {
     private static volatile Connection sharedConnection;

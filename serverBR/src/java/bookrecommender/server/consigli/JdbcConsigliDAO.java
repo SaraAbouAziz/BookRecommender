@@ -27,10 +27,14 @@ import org.apache.logging.log4j.Logger;
  * operazione. In caso di {@link SQLException}, l'eccezione viene catturata,
  * loggata e rilanciata come una {@link RuntimeException} per semplificare la
  * gestione degli errori nei layer superiori.
- *
+ * @author Abou Aziz Sara Hesham Abdel Hamid 757004
+ * @author Ben Mahjoub Ali 759560
+ * @author Hidri Mohamed Taha 756235
+ * @author Zoghbani Lilia 759652
  * @see ConsigliDAO
  * @see Consiglio
  * @see DBConnectionSingleton
+ * @version 1.0
  */
 public class JdbcConsigliDAO implements ConsigliDAO {
 

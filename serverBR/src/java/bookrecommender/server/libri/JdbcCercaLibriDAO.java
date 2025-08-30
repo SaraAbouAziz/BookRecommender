@@ -28,10 +28,14 @@ import java.util.List;
  *         superiore (es. un Service Layer) di controllare il ciclo di vita della transazione
  *         (commit/rollback) quando più operazioni DAO devono essere eseguite atomicamente.</li>
  * </ul>
- *
+ * @author Abou Aziz Sara Hesham Abdel Hamid 757004
+ * @author Ben Mahjoub Ali 759560
+ * @author Hidri Mohamed Taha 756235
+ * @author Zoghbani Lilia 759652
  * @see LibroDAO
  * @see Libro
  * @see DBConnectionSingleton
+ * @version 1.0
  */
 public class JdbcCercaLibriDAO implements LibroDAO {
     private static final Logger logger = LogManager.getLogger(JdbcCercaLibriDAO.class);

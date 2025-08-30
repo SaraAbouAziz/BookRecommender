@@ -25,11 +25,15 @@ import java.util.List;
  * </ul>
  * Questa implementazione è stateless e thread-safe, poiché si affida a un DAO stateless che gestisce
  * le connessioni al database per ogni singola operazione.
- *
+ * @author Abou Aziz Sara Hesham Abdel Hamid 757004
+ * @author Ben Mahjoub Ali 759560
+ * @author Hidri Mohamed Taha 756235
+ * @author Zoghbani Lilia 759652
  * @see CercaLibriService
  * @see LibroDAO
  * @see JdbcCercaLibriDAO
  * @see java.rmi.server.UnicastRemoteObject
+ * @version 1.0
  */
 public class CercaLibriServiceImpl extends UnicastRemoteObject implements CercaLibriService {
     private static final Logger logger = LogManager.getLogger(CercaLibriServiceImpl.class);
