@@ -1,0 +1,17 @@
+bookrecommender\server\librerie\package-info.class
+bookrecommender\server\librerie\JdbcLibrerieDAO.class
+bookrecommender\server\librerie\LibrerieServiceImpl.class
+bookrecommender\server\utenti\UtentiServiceImpl.class
+bookrecommender\server\utenti\JdbcUtentiDAO.class
+bookrecommender\server\utenti\package-info.class
+bookrecommender\server\libri\CercaLibriServiceImpl.class
+bookrecommender\server\utili\DBConnectionSingleton.class
+bookrecommender\server\librerie\LibrerieDAO.class
+bookrecommender\server\libri\JdbcCercaLibriDAO.class
+module-info.class
+bookrecommender\server\libri\LibroDAO.class
+bookrecommender\server\utenti\UtentiDAO.class
+bookrecommender\server\libri\package-info.class
+bookrecommender\server\utili\ValutazioneService.class
+bookrecommender\server\utili\DBUtil.class
+bookrecommender\server\ServerMain.class
