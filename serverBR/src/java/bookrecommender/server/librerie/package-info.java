@@ -19,7 +19,6 @@
  *   <li>Logging delle operazioni per debugging e monitoraggio</li>
  * </ul>
  * 
- * @author BookRecommender Team
  * @version 1.0
  */
 package bookrecommender.server.librerie;

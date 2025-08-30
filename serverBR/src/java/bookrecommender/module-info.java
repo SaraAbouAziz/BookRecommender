@@ -8,4 +8,6 @@ module serverBR {
     exports bookrecommender.server.utili;
     exports bookrecommender.server.librerie;
     exports bookrecommender.server.libri;
+    exports bookrecommender.server.valutazioni;
+    exports bookrecommender.server.consigli;
 }
