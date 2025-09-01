@@ -73,6 +73,11 @@ public class ParticleAnimation {
     private boolean pendingStart = false;
     /** Flag per assicurarsi che i listener di ridimensionamento vengano collegati una sola volta. */
     private boolean listenersAttached = false;
+    /** Flag che indica che il canvas/animazione sono stati definitivamente dismessi (scene/window chiusa). */
+    private volatile boolean disposed = false;
+
+    /** Dimensione massima prudenziale (in px) oltre la quale evitiamo di ridimensionare il canvas (limitazioni texture GPU). */
+    private static final double MAX_SAFE_SIZE = 8192; // valore conservativo per la maggior parte delle pipeline
 
     /**
      * Costruisce un'istanza di ParticleAnimation associata a un {@link Canvas}.
@@ -114,7 +119,17 @@ public class ParticleAnimation {
         this.timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
+                if (disposed) { // sicurezza extra
+                    stop();
+                    return;
+                }
                 if (!running) return;
+
+                // Verifica che il canvas sia ancora renderizzabile; in caso contrario interrompiamo
+                if (!canRender()) {
+                    // Non fermiamo subito: proviamo a reinizializzare se ritorna valido
+                    return;
+                }
 
                 if (startTime == 0) startTime = now;
 
@@ -203,7 +218,8 @@ public class ParticleAnimation {
         window.addEventHandler(WindowEvent.WINDOW_SHOWN, e -> Platform.runLater(this::ensureCanvasInitialized));
 
         // Alla chiusura stoppiamo l'animazione per evitare memory leak
-        window.setOnCloseRequest(e -> stop());
+    window.setOnCloseRequest(e -> safeDispose());
+    window.addEventHandler(WindowEvent.WINDOW_HIDDEN, e -> safeDispose());
     }
 
     /**
@@ -259,10 +275,29 @@ public class ParticleAnimation {
      * @param speedMultiplier Un fattore (da 0.0 a 1.0) che modula la velocità delle particelle.
      */
     private void updateAndDraw(double speedMultiplier) {
-        gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        for (Particle p : particles) {
-            p.update(speedMultiplier);
-            p.draw();
+        if (!canRender()) return;
+        try {
+            gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+            for (Particle p : particles) {
+                p.update(speedMultiplier);
+                p.draw();
+            }
+        } catch (NullPointerException npe) {
+            // NPE interno di Prism (RTTexture null). Interrompiamo e marchiamo come da reinizializzare.
+            System.err.println("[ParticleAnimation] Render interrotto per NPE interno Canvas: " + npe.getMessage());
+            // Tentiamo un reset leggero (senza marcare disposed) se la scene esiste ancora.
+            if (canvas.getScene() == null) {
+                safeDispose();
+            } else {
+                // Stop e riprova dopo un piccolo delay se ancora valido.
+                stop();
+                Platform.runLater(() -> {
+                    if (!disposed && canRender()) {
+                        pendingStart = true;
+                        ensureCanvasInitialized();
+                    }
+                });
+            }
         }
     }
 
@@ -305,6 +340,30 @@ public class ParticleAnimation {
         try {
             timer.stop();
         } catch (Exception ignored) {}
+    }
+
+    /** Ferma l'animazione e marca la classe come dismessa definitivamente. */
+    private void safeDispose() {
+        if (disposed) return;
+        stop();
+        disposed = true;
+        particles.clear();
+    }
+
+    /**
+     * Verifica se il canvas è in uno stato in cui è sensato disegnare:
+     * - non dismesso
+     * - ha scene e window
+     * - width/height in (0, MAX_SAFE_SIZE]
+     */
+    private boolean canRender() {
+        double w = canvas.getWidth();
+        double h = canvas.getHeight();
+        if (disposed) return false;
+        if (canvas.getScene() == null) return false;
+        if (w <= 0 || h <= 0) return false;
+        if (w > MAX_SAFE_SIZE || h > MAX_SAFE_SIZE) return false; // evitiamo richieste di texture enormi
+        return true;
     }
 
     /**

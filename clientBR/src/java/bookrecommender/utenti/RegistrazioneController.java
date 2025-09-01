@@ -135,6 +135,26 @@ public class RegistrazioneController {
      * </p>
      */
     private void setupInputValidation() {
+        // Validazione nome (lettere, spazi, apostrofi, trattini e lettere accentate)
+        UnaryOperator<javafx.scene.control.TextFormatter.Change> nomeFilter = change -> {
+            String newText = change.getControlNewText();
+            if (newText.matches("[A-Za-zÀ-ÖØ-öø-ÿ '’-]*")) {
+                return change;
+            }
+            return null;
+        };
+        textFieldNome.setTextFormatter(new javafx.scene.control.TextFormatter<>(nomeFilter));
+
+        // Validazione cognome (stesse regole del nome)
+        UnaryOperator<javafx.scene.control.TextFormatter.Change> cognomeFilter = change -> {
+            String newText = change.getControlNewText();
+            if (newText.matches("[A-Za-zÀ-ÖØ-öø-ÿ '’-]*")) {
+                return change;
+            }
+            return null;
+        };
+        textFieldCognome.setTextFormatter(new javafx.scene.control.TextFormatter<>(cognomeFilter));
+
         // Validazione codice fiscale (solo lettere e numeri)
         UnaryOperator<javafx.scene.control.TextFormatter.Change> cfFilter = change -> {
             String newText = change.getControlNewText();
@@ -312,6 +332,22 @@ public class RegistrazioneController {
         if (cf.length() != 16) {
             showAlert(Alert.AlertType.ERROR, "Errore", "Codice fiscale non valido", 
                      "Il codice fiscale deve essere di 16 caratteri");
+            return false;
+        }
+
+        // Controllo formato nome (2-40 caratteri consentiti)
+        String nome = textFieldNome.getText().trim();
+        if (!nome.matches("[A-Za-zÀ-ÖØ-öø-ÿ '’-]{2,40}")) {
+            showAlert(Alert.AlertType.ERROR, "Errore", "Nome non valido", 
+                     "Il nome può contenere solo lettere (anche accentate), spazi, apostrofi o trattini (2-40 caratteri)");
+            return false;
+        }
+
+        // Controllo formato cognome (2-60 caratteri consentiti)
+        String cognome = textFieldCognome.getText().trim();
+        if (!cognome.matches("[A-Za-zÀ-ÖØ-öø-ÿ '’-]{2,60}")) {
+            showAlert(Alert.AlertType.ERROR, "Errore", "Cognome non valido", 
+                     "Il cognome può contenere solo lettere (anche accentate), spazi, apostrofi o trattini (2-60 caratteri)");
             return false;
         }
 
