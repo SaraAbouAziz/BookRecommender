@@ -16184,3 +16184,114 @@ Caused by: java.net.ConnectException: Connection refused: connect
 2025-09-01 20:54:02.743 [JavaFX Application Thread] DEBUG bookrecommender.utili.ViewsController - Cambiata view a: /bookrecommender/benvenuti-view.fxml
 2025-09-01 20:54:09.470 [JavaFX Application Thread] DEBUG bookrecommender.utenti.LoginController - Inizializzazione LoginController
 2025-09-01 20:54:09.486 [JavaFX Application Thread] DEBUG bookrecommender.utili.ViewsController - Cambiata view a: /bookrecommender/login-view.fxml
+2025-09-01 21:05:28.874 [JavaFX Application Thread] INFO  bookrecommender.utili.ViewsController - ViewsController inizializzato con stage principale (maximized=false, fullscreen=false)
+2025-09-01 21:05:29.074 [JavaFX Application Thread] DEBUG bookrecommender.utili.BenvenutiController - Inizializzazione BenvenutiController
+2025-09-01 21:05:29.393 [JavaFX Application Thread] DEBUG bookrecommender.utili.ViewsController - Cambiata view a: /bookrecommender/benvenuti-view.fxml
+2025-09-01 21:05:32.802 [JavaFX Application Thread] DEBUG bookrecommender.utenti.LoginController - Inizializzazione LoginController
+2025-09-01 21:05:32.821 [JavaFX Application Thread] DEBUG bookrecommender.utili.ViewsController - Cambiata view a: /bookrecommender/login-view.fxml
+2025-09-01 21:05:42.209 [JavaFX Application Thread] DEBUG bookrecommender.utenti.LoginController - Tentativo di login per utente: SaraAziz
+2025-09-01 21:05:42.339 [JavaFX Application Thread] INFO  bookrecommender.utenti.LoginController - Login riuscito per utente: SaraAziz
+2025-09-01 21:05:43.259 [JavaFX Application Thread] INFO  bookrecommender.utenti.DashboardController - Dashboard inizializzata per l'utente: SaraAziz
+2025-09-01 21:05:43.312 [JavaFX Application Thread] DEBUG bookrecommender.utili.ViewsController - Cambiata view a: /bookrecommender/areaprivata-view.fxml
+2025-09-01 21:05:44.965 [JavaFX Application Thread] INFO  bookrecommender.utenti.DashboardController - Azione: Visualizza Librerie
+2025-09-01 21:05:45.146 [JavaFX Application Thread] DEBUG bookrecommender.utili.ViewsController - Cambiata view a: /bookrecommender/librerie-view.fxml
+2025-09-01 21:05:50.651 [JavaFX Application Thread] DEBUG bookrecommender.utili.ViewsController - Cambiata view a: /bookrecommender/dettagliLibro-view.fxml
+2025-09-01 21:05:54.978 [JavaFX Application Thread] DEBUG bookrecommender.utili.ViewsController - Cambiata view a: /bookrecommender/librerie-view.fxml
+2025-09-01 21:06:01.413 [JavaFX Application Thread] DEBUG bookrecommender.utili.ViewsController - Cambiata view a: /bookrecommender/dettagliLibro-view.fxml
+2025-09-01 21:06:09.872 [JavaFX Application Thread] DEBUG bookrecommender.utili.ViewsController - Cambiata view a: /bookrecommender/all-valutazioni-view.fxml
+2025-09-01 21:06:23.005 [JavaFX Application Thread] INFO  bookrecommender.libri.CercaLibriController - Connessione a CercaLibriService RMI riuscita.
+2025-09-01 21:06:23.011 [JavaFX Application Thread] DEBUG bookrecommender.libri.CercaLibriController - Inizializzazione CercaLibriController...
+2025-09-01 21:06:23.012 [JavaFX Application Thread] INFO  bookrecommender.libri.CercaLibriController - CercaLibriController inizializzato correttamente.
+2025-09-01 21:06:23.030 [JavaFX Application Thread] DEBUG bookrecommender.utili.ViewsController - Cambiata view a: /bookrecommender/cercaLibri-view.fxml
+2025-09-01 21:06:24.133 [JavaFX Application Thread] INFO  bookrecommender.utenti.DashboardController - Dashboard inizializzata per l'utente: SaraAziz
+2025-09-01 21:06:24.148 [JavaFX Application Thread] DEBUG bookrecommender.utili.ViewsController - Cambiata view a: /bookrecommender/areaprivata-view.fxml
+2025-09-01 21:06:33.557 [JavaFX Application Thread] INFO  bookrecommender.utenti.DashboardController - Azione: Logout
+2025-09-01 21:06:34.673 [JavaFX Application Thread] INFO  bookrecommender.utenti.DashboardController - Logout confermato. Reindirizzamento alla schermata di benvenuto.
+2025-09-01 21:06:34.680 [JavaFX Application Thread] DEBUG bookrecommender.utili.BenvenutiController - Inizializzazione BenvenutiController
+2025-09-01 21:06:34.686 [JavaFX Application Thread] DEBUG bookrecommender.utili.ViewsController - Cambiata view a: /bookrecommender/benvenuti-view.fxml
+2025-09-01 21:06:37.667 [JavaFX Application Thread] DEBUG bookrecommender.utenti.RegistrazioneController - Inizializzazione RegistrazioneController
+2025-09-01 21:06:37.676 [JavaFX Application Thread] DEBUG bookrecommender.utili.ViewsController - Cambiata view a: /bookrecommender/registrazione-view.fxml
+2025-09-01 21:07:52.725 [JavaFX Application Thread] DEBUG bookrecommender.utenti.RegistrazioneController - Tentativo di registrazione nuovo utente
+2025-09-01 21:07:52.922 [JavaFX Application Thread] WARN  bookrecommender.utenti.RegistrazioneController - Registrazione fallita per utente: Hajar
+2025-09-01 21:08:10.664 [JavaFX Application Thread] DEBUG bookrecommender.utenti.RegistrazioneController - Tentativo di registrazione nuovo utente
+2025-09-01 21:08:10.848 [JavaFX Application Thread] INFO  bookrecommender.utenti.RegistrazioneController - Registrazione riuscita per utente: Hajar
+2025-09-01 21:08:21.131 [JavaFX Application Thread] DEBUG bookrecommender.utili.BenvenutiController - Inizializzazione BenvenutiController
+2025-09-01 21:08:21.136 [JavaFX Application Thread] DEBUG bookrecommender.utili.ViewsController - Cambiata view a: /bookrecommender/benvenuti-view.fxml
+2025-09-01 21:10:46.625 [JavaFX Application Thread] DEBUG bookrecommender.utenti.RegistrazioneController - Inizializzazione RegistrazioneController
+2025-09-01 21:10:46.630 [JavaFX Application Thread] DEBUG bookrecommender.utili.ViewsController - Cambiata view a: /bookrecommender/registrazione-view.fxml
+2025-09-01 21:10:48.035 [JavaFX Application Thread] DEBUG bookrecommender.utenti.RegistrazioneController - Richiesta di tornare al menu principale
+2025-09-01 21:10:48.043 [JavaFX Application Thread] DEBUG bookrecommender.utili.BenvenutiController - Inizializzazione BenvenutiController
+2025-09-01 21:10:48.050 [JavaFX Application Thread] DEBUG bookrecommender.utili.ViewsController - Cambiata view a: /bookrecommender/benvenuti-view.fxml
+2025-09-01 21:10:49.654 [JavaFX Application Thread] INFO  bookrecommender.libri.CercaLibriController - Connessione a CercaLibriService RMI riuscita.
+2025-09-01 21:10:49.655 [JavaFX Application Thread] DEBUG bookrecommender.libri.CercaLibriController - Inizializzazione CercaLibriController...
+2025-09-01 21:10:49.655 [JavaFX Application Thread] INFO  bookrecommender.libri.CercaLibriController - CercaLibriController inizializzato correttamente.
+2025-09-01 21:10:49.659 [JavaFX Application Thread] DEBUG bookrecommender.utili.ViewsController - Cambiata view a: /bookrecommender/cercaLibri-view.fxml
+2025-09-01 21:10:55.483 [JavaFX Application Thread] DEBUG bookrecommender.utili.BenvenutiController - Inizializzazione BenvenutiController
+2025-09-01 21:10:55.496 [JavaFX Application Thread] DEBUG bookrecommender.utili.ViewsController - Cambiata view a: /bookrecommender/benvenuti-view.fxml
+2025-09-01 21:11:47.559 [JavaFX Application Thread] DEBUG bookrecommender.utenti.RegistrazioneController - Inizializzazione RegistrazioneController
+2025-09-01 21:11:47.564 [JavaFX Application Thread] DEBUG bookrecommender.utili.ViewsController - Cambiata view a: /bookrecommender/registrazione-view.fxml
+2025-09-01 21:12:09.941 [JavaFX Application Thread] INFO  bookrecommender.utili.ViewsController - ViewsController inizializzato con stage principale (maximized=false, fullscreen=false)
+2025-09-01 21:12:10.133 [JavaFX Application Thread] DEBUG bookrecommender.utili.BenvenutiController - Inizializzazione BenvenutiController
+2025-09-01 21:12:10.375 [JavaFX Application Thread] DEBUG bookrecommender.utili.ViewsController - Cambiata view a: /bookrecommender/benvenuti-view.fxml
+2025-09-01 21:12:14.950 [JavaFX Application Thread] DEBUG bookrecommender.utenti.LoginController - Inizializzazione LoginController
+2025-09-01 21:12:14.979 [JavaFX Application Thread] DEBUG bookrecommender.utili.ViewsController - Cambiata view a: /bookrecommender/login-view.fxml
+2025-09-01 21:12:16.999 [JavaFX Application Thread] DEBUG bookrecommender.utenti.LoginController - Richiesta di tornare al menu principale
+2025-09-01 21:12:17.011 [JavaFX Application Thread] DEBUG bookrecommender.utili.BenvenutiController - Inizializzazione BenvenutiController
+2025-09-01 21:12:17.023 [JavaFX Application Thread] DEBUG bookrecommender.utili.ViewsController - Cambiata view a: /bookrecommender/benvenuti-view.fxml
+2025-09-01 21:12:17.965 [JavaFX Application Thread] DEBUG bookrecommender.utenti.RegistrazioneController - Inizializzazione RegistrazioneController
+2025-09-01 21:12:17.973 [JavaFX Application Thread] DEBUG bookrecommender.utili.ViewsController - Cambiata view a: /bookrecommender/registrazione-view.fxml
+2025-09-01 21:12:37.937 [JavaFX Application Thread] DEBUG bookrecommender.utenti.RegistrazioneController - Tentativo di registrazione nuovo utente
+2025-09-01 21:13:48.272 [JavaFX Application Thread] DEBUG bookrecommender.utenti.RegistrazioneController - Tentativo di registrazione nuovo utente
+2025-09-01 21:14:57.773 [JavaFX Application Thread] DEBUG bookrecommender.utenti.RegistrazioneController - Richiesta di tornare al menu principale
+2025-09-01 21:14:57.778 [JavaFX Application Thread] DEBUG bookrecommender.utili.BenvenutiController - Inizializzazione BenvenutiController
+2025-09-01 21:14:57.784 [JavaFX Application Thread] DEBUG bookrecommender.utili.ViewsController - Cambiata view a: /bookrecommender/benvenuti-view.fxml
+2025-09-01 21:15:05.028 [JavaFX Application Thread] INFO  bookrecommender.libri.CercaLibriController - Connessione a CercaLibriService RMI riuscita.
+2025-09-01 21:15:05.029 [JavaFX Application Thread] DEBUG bookrecommender.libri.CercaLibriController - Inizializzazione CercaLibriController...
+2025-09-01 21:15:05.030 [JavaFX Application Thread] INFO  bookrecommender.libri.CercaLibriController - CercaLibriController inizializzato correttamente.
+2025-09-01 21:15:05.037 [JavaFX Application Thread] DEBUG bookrecommender.utili.ViewsController - Cambiata view a: /bookrecommender/cercaLibri-view.fxml
+2025-09-01 21:15:15.030 [JavaFX Application Thread] DEBUG bookrecommender.utili.ViewsController - Cambiata view a: /bookrecommender/dettagliLibro-view.fxml
+2025-09-01 21:15:20.206 [JavaFX Application Thread] DEBUG bookrecommender.utili.ViewsController - Cambiata view a: /bookrecommender/all-valutazioni-view.fxml
+2025-09-01 21:15:23.377 [JavaFX Application Thread] INFO  bookrecommender.libri.CercaLibriController - Connessione a CercaLibriService RMI riuscita.
+2025-09-01 21:15:23.378 [JavaFX Application Thread] DEBUG bookrecommender.libri.CercaLibriController - Inizializzazione CercaLibriController...
+2025-09-01 21:15:23.378 [JavaFX Application Thread] INFO  bookrecommender.libri.CercaLibriController - CercaLibriController inizializzato correttamente.
+2025-09-01 21:15:23.387 [JavaFX Application Thread] DEBUG bookrecommender.utili.ViewsController - Cambiata view a: /bookrecommender/cercaLibri-view.fxml
+2025-09-01 21:15:26.799 [JavaFX Application Thread] DEBUG bookrecommender.utili.BenvenutiController - Inizializzazione BenvenutiController
+2025-09-01 21:15:26.807 [JavaFX Application Thread] DEBUG bookrecommender.utili.ViewsController - Cambiata view a: /bookrecommender/benvenuti-view.fxml
+2025-09-01 21:18:53.075 [JavaFX Application Thread] DEBUG bookrecommender.utenti.LoginController - Inizializzazione LoginController
+2025-09-01 21:18:53.090 [JavaFX Application Thread] DEBUG bookrecommender.utili.ViewsController - Cambiata view a: /bookrecommender/login-view.fxml
+2025-09-01 21:18:55.251 [JavaFX Application Thread] DEBUG bookrecommender.utenti.LoginController - Richiesta di tornare al menu principale
+2025-09-01 21:18:55.259 [JavaFX Application Thread] DEBUG bookrecommender.utili.BenvenutiController - Inizializzazione BenvenutiController
+2025-09-01 21:18:55.272 [JavaFX Application Thread] DEBUG bookrecommender.utili.ViewsController - Cambiata view a: /bookrecommender/benvenuti-view.fxml
+2025-09-01 21:19:02.572 [JavaFX Application Thread] INFO  bookrecommender.utili.ViewsController - ViewsController inizializzato con stage principale (maximized=false, fullscreen=false)
+2025-09-01 21:19:02.747 [JavaFX Application Thread] DEBUG bookrecommender.utili.BenvenutiController - Inizializzazione BenvenutiController
+2025-09-01 21:19:03.013 [JavaFX Application Thread] DEBUG bookrecommender.utili.ViewsController - Cambiata view a: /bookrecommender/benvenuti-view.fxml
+2025-09-01 21:19:52.007 [JavaFX Application Thread] INFO  bookrecommender.utili.ViewsController - ViewsController inizializzato con stage principale (maximized=false, fullscreen=false)
+2025-09-01 21:19:52.197 [JavaFX Application Thread] DEBUG bookrecommender.utili.BenvenutiController - Inizializzazione BenvenutiController
+2025-09-01 21:19:52.428 [JavaFX Application Thread] DEBUG bookrecommender.utili.ViewsController - Cambiata view a: /bookrecommender/benvenuti-view.fxml
+2025-09-01 21:21:34.928 [JavaFX Application Thread] INFO  bookrecommender.utili.ViewsController - ViewsController inizializzato con stage principale (maximized=false, fullscreen=false)
+2025-09-01 21:21:35.118 [JavaFX Application Thread] DEBUG bookrecommender.utili.BenvenutiController - Inizializzazione BenvenutiController
+2025-09-01 21:21:35.363 [JavaFX Application Thread] DEBUG bookrecommender.utili.ViewsController - Cambiata view a: /bookrecommender/benvenuti-view.fxml
+2025-09-01 21:21:36.663 [JavaFX Application Thread] DEBUG bookrecommender.utenti.RegistrazioneController - Inizializzazione RegistrazioneController
+2025-09-01 21:21:36.681 [JavaFX Application Thread] DEBUG bookrecommender.utili.ViewsController - Cambiata view a: /bookrecommender/registrazione-view.fxml
+2025-09-01 21:21:40.305 [JavaFX Application Thread] DEBUG bookrecommender.utenti.RegistrazioneController - Richiesta di tornare al menu principale
+2025-09-01 21:21:40.313 [JavaFX Application Thread] DEBUG bookrecommender.utili.BenvenutiController - Inizializzazione BenvenutiController
+2025-09-01 21:21:40.324 [JavaFX Application Thread] DEBUG bookrecommender.utili.ViewsController - Cambiata view a: /bookrecommender/benvenuti-view.fxml
+2025-09-01 21:21:41.479 [JavaFX Application Thread] DEBUG bookrecommender.utenti.LoginController - Inizializzazione LoginController
+2025-09-01 21:21:41.488 [JavaFX Application Thread] DEBUG bookrecommender.utili.ViewsController - Cambiata view a: /bookrecommender/login-view.fxml
+2025-09-01 21:21:50.696 [JavaFX Application Thread] DEBUG bookrecommender.utenti.LoginController - Tentativo di login per utente: SaraAziz
+2025-09-01 21:21:50.884 [JavaFX Application Thread] INFO  bookrecommender.utenti.LoginController - Login riuscito per utente: SaraAziz
+2025-09-01 21:21:51.662 [JavaFX Application Thread] INFO  bookrecommender.utenti.DashboardController - Dashboard inizializzata per l'utente: SaraAziz
+2025-09-01 21:21:51.671 [JavaFX Application Thread] DEBUG bookrecommender.utili.ViewsController - Cambiata view a: /bookrecommender/areaprivata-view.fxml
+2025-09-01 21:21:53.402 [JavaFX Application Thread] INFO  bookrecommender.utenti.DashboardController - Azione: Logout
+2025-09-01 21:21:54.445 [JavaFX Application Thread] INFO  bookrecommender.utenti.DashboardController - Logout confermato. Reindirizzamento alla schermata di benvenuto.
+2025-09-01 21:21:54.456 [JavaFX Application Thread] DEBUG bookrecommender.utili.BenvenutiController - Inizializzazione BenvenutiController
+2025-09-01 21:21:54.467 [JavaFX Application Thread] DEBUG bookrecommender.utili.ViewsController - Cambiata view a: /bookrecommender/benvenuti-view.fxml
+2025-09-01 21:21:56.043 [JavaFX Application Thread] DEBUG bookrecommender.utenti.RegistrazioneController - Inizializzazione RegistrazioneController
+2025-09-01 21:21:56.054 [JavaFX Application Thread] DEBUG bookrecommender.utili.ViewsController - Cambiata view a: /bookrecommender/registrazione-view.fxml
+2025-09-01 21:22:55.663 [JavaFX Application Thread] DEBUG bookrecommender.utenti.RegistrazioneController - Tentativo di registrazione nuovo utente
+2025-09-01 21:23:17.667 [JavaFX Application Thread] DEBUG bookrecommender.utenti.RegistrazioneController - Tentativo di registrazione nuovo utente
+2025-09-01 21:23:25.534 [JavaFX Application Thread] DEBUG bookrecommender.utenti.RegistrazioneController - Tentativo di registrazione nuovo utente
+2025-09-01 21:24:02.606 [JavaFX Application Thread] DEBUG bookrecommender.utenti.RegistrazioneController - Tentativo di registrazione nuovo utente
+2025-09-01 21:27:55.719 [JavaFX Application Thread] DEBUG bookrecommender.utenti.RegistrazioneController - Richiesta di tornare al menu principale
+2025-09-01 21:27:55.722 [JavaFX Application Thread] DEBUG bookrecommender.utili.BenvenutiController - Inizializzazione BenvenutiController
+2025-09-01 21:27:55.727 [JavaFX Application Thread] DEBUG bookrecommender.utili.ViewsController - Cambiata view a: /bookrecommender/benvenuti-view.fxml
