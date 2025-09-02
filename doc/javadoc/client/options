@@ -1,0 +1,24 @@
+-classpath
+'C:/Users/sarah/.m2/repository/com/bookrecommender/inComune/1.0.0/inComune-1.0.0.jar;C:/Users/sarah/.m2/repository/org/openjfx/javafx-controls/17.0.2/javafx-controls-17.0.2.jar;C:/Users/sarah/.m2/repository/org/openjfx/javafx-controls/17.0.2/javafx-controls-17.0.2-win.jar;C:/Users/sarah/.m2/repository/org/openjfx/javafx-fxml/17.0.2/javafx-fxml-17.0.2.jar;C:/Users/sarah/.m2/repository/org/openjfx/javafx-fxml/17.0.2/javafx-fxml-17.0.2-win.jar;C:/Users/sarah/.m2/repository/org/openjfx/javafx-graphics/17.0.2/javafx-graphics-17.0.2.jar;C:/Users/sarah/.m2/repository/org/openjfx/javafx-graphics/17.0.2/javafx-graphics-17.0.2-win.jar;C:/Users/sarah/.m2/repository/org/openjfx/javafx-base/17.0.2/javafx-base-17.0.2.jar;C:/Users/sarah/.m2/repository/org/openjfx/javafx-base/17.0.2/javafx-base-17.0.2-win.jar;C:/Users/sarah/.m2/repository/org/apache/logging/log4j/log4j-core/2.20.0/log4j-core-2.20.0.jar;C:/Users/sarah/.m2/repository/org/apache/logging/log4j/log4j-api/2.20.0/log4j-api-2.20.0.jar;C:/Users/sarah/.m2/repository/com/jfoenix/jfoenix/9.0.10/jfoenix-9.0.10.jar;C:/Users/sarah/.m2/repository/de/jensd/fontawesomefx-fontawesome/4.7.0-9.1.2/fontawesomefx-fontawesome-4.7.0-9.1.2.jar;C:/Users/sarah/.m2/repository/de/jensd/fontawesomefx-commons/9.1.2/fontawesomefx-commons-9.1.2.jar'
+-encoding
+'UTF-8'
+-protected
+-source
+'17'
+-sourcepath
+'C:/Users/sarah/Downloads/BookRecommender-main/BookRecommender-main/clientBR/src/java'
+-author
+-bottom
+'Copyright &#169; 2025. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'C:/Users/sarah/Downloads/BookRecommender-main/BookRecommender-main/clientBR/target/site/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'BookRecommender Client 1.0.0 API'
+-use
+-version
+-windowtitle
+'BookRecommender Client 1.0.0 API'
