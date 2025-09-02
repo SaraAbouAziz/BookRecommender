@@ -1,0 +1,24 @@
+-classpath
+'C:/Users/sarah/.m2/repository/com/bookrecommender/inComune/1.0.0/inComune-1.0.0.jar;C:/Users/sarah/.m2/repository/org/apache/logging/log4j/log4j-core/2.20.0/log4j-core-2.20.0.jar;C:/Users/sarah/.m2/repository/org/apache/logging/log4j/log4j-api/2.20.0/log4j-api-2.20.0.jar;C:/Users/sarah/.m2/repository/org/postgresql/postgresql/42.7.3/postgresql-42.7.3.jar'
+-encoding
+'UTF-8'
+-protected
+-source
+'17'
+-sourcepath
+'C:/Users/sarah/Downloads/BookRecommender-main/BookRecommender-main/serverBR/src/java'
+-author
+-bottom
+'Copyright &#169; 2025. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'C:/Users/sarah/Downloads/BookRecommender-main/BookRecommender-main/serverBR/target/site/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'BookRecommender Server 1.0.0 API'
+-use
+-version
+-windowtitle
+'BookRecommender Server 1.0.0 API'

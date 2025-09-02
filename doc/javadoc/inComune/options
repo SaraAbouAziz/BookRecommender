@@ -1,0 +1,22 @@
+-encoding
+'UTF-8'
+-protected
+-source
+'17'
+-sourcepath
+'C:/Users/sarah/Downloads/BookRecommender-main/BookRecommender-main/inComune/src/java'
+-author
+-bottom
+'Copyright &#169; 2025. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'C:/Users/sarah/Downloads/BookRecommender-main/BookRecommender-main/inComune/target/site/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'inComune 1.0.0 API'
+-use
+-version
+-windowtitle
+'inComune 1.0.0 API'

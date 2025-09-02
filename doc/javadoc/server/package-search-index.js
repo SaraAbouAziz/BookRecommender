@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"bookrecommender.server"},{"l":"bookrecommender.server.consigli"},{"l":"bookrecommender.server.librerie"},{"l":"bookrecommender.server.libri"},{"l":"bookrecommender.server.utenti"},{"l":"bookrecommender.server.utili"},{"l":"bookrecommender.server.valutazioni"}];updateSearchResults();
