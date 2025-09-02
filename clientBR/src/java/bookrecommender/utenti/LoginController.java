@@ -78,7 +78,7 @@ public class LoginController {
     @FXML
     public void initialize() {
         logger.debug("Inizializzazione LoginController");
-        usernameField.setPromptText("Username, Email o Codice Fiscale");
+        usernameField.setPromptText("Username");
 
         // Avvia l'animazione dello sfondo
         if (backgroundCanvas != null) {
