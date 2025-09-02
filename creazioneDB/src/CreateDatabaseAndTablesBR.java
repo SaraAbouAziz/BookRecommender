@@ -124,7 +124,16 @@ public class CreateDatabaseAndTablesBR {
     );
 """;
 
-   
+    // SQL per creare gli indici per ottimizzare le query
+    private static final String createIndexLibriTitolo = "CREATE INDEX idx_libri_titolo ON Libri(titolo);";
+    private static final String createIndexLibriAutori = "CREATE INDEX idx_libri_autori ON Libri(autori);";
+
+    // Indici per le tabelle di relazione, cruciali per le funzionalità di raccomandazione e analisi
+    private static final String createIndexValutazioniLibroId = "CREATE INDEX idx_valutazioni_libro_id ON ValutazioniLibri(libro_id);";
+    private static final String createIndexConsigliLibroLetto = "CREATE INDEX idx_consigli_libro_letto_id ON ConsigliLibri(libro_letto_id);";
+    private static final String createIndexConsigliLibroConsigliato = "CREATE INDEX idx_consigli_libro_consigliato_id ON ConsigliLibri(libro_consigliato_id);";
+
+
     public static void main(String[] args) {
         String LIBRI_FILE = "Libri.dati.csv";
       
@@ -199,7 +208,7 @@ public class CreateDatabaseAndTablesBR {
                 DROP TABLE IF EXISTS UtentiRegistrati CASCADE;
                 """;
 
-        try (Statement stmt = conn.createStatement()) {
+          try (Statement stmt = conn.createStatement()) {
             stmt.executeUpdate(dropTables);
             System.out.println("Tabelle eliminate, se esistenti.");
 
@@ -212,6 +221,14 @@ public class CreateDatabaseAndTablesBR {
             stmt.executeUpdate(createConsigliLibri);
 
             System.out.println("Tabelle create con successo nel database " + DB_NAME + "!");
+
+            System.out.println("Creazione degli indici per ottimizzare le ricerche...");
+            stmt.executeUpdate(createIndexLibriTitolo);
+            stmt.executeUpdate(createIndexLibriAutori);
+            stmt.executeUpdate(createIndexValutazioniLibroId);
+            stmt.executeUpdate(createIndexConsigliLibroLetto);
+            stmt.executeUpdate(createIndexConsigliLibroConsigliato);
+            System.out.println("Indici creati con successo.");
         } catch (SQLException e) {
             System.out.println("Errore nella creazione delle tabelle: " + e.getMessage());
             e.printStackTrace();
