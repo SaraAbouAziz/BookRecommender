@@ -18,6 +18,7 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.function.UnaryOperator;
+import java.util.regex.Pattern;
 
 /**
  * Controller per la schermata di registrazione (registrazione-view.fxml).
@@ -41,6 +42,27 @@ import java.util.function.UnaryOperator;
  */
 public class RegistrazioneController {
     private static final Logger logger = LogManager.getLogger(RegistrazioneController.class);
+
+    /**
+     * Pattern email robusto che verifica:
+     * <ul>
+     *     <li>Lunghezza complessiva 6-254 caratteri.</li>
+     *     <li>Local-part con caratteri consentiti RFC (semplificato) e punti non consecutivi.</li>
+     *     <li>Dominio composto da etichette valide e TLD alfabetico di almeno 2 lettere.</li>
+     * </ul>
+     */
+    private static final Pattern EMAIL_PATTERN = Pattern.compile(
+            "^(?=.{6,254}$)([A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*)@" +
+            "([A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?\\.)+[A-Za-z]{2,}$"
+    );
+    /** Requisiti password: almeno 10 caratteri, una maiuscola, una minuscola, una cifra, un simbolo, nessuno spazio. */
+    private static final Pattern PW_UPPER = Pattern.compile(".*[A-Z].*");
+    private static final Pattern PW_LOWER = Pattern.compile(".*[a-z].*");
+    private static final Pattern PW_DIGIT = Pattern.compile(".*[0-9].*");
+    // Nota: occorre escapare '[' e ']' dentro la classe di caratteri per evitare PatternSyntaxException
+    private static final Pattern PW_SYMBOL = Pattern.compile(".*[!@#$%^&*()_+\\-\\[\\]{};':\\\"`~\\\\|,.<>/?].*");
+    private static final Pattern PW_WHITESPACE = Pattern.compile(".*\\s.*");
+    private static final int PW_MIN_LENGTH = 10;
     
     /**
      * Campo di testo per l'inserimento del nome dell'utente.
@@ -135,6 +157,26 @@ public class RegistrazioneController {
      * </p>
      */
     private void setupInputValidation() {
+        // Validazione nome (lettere, spazi, apostrofi, trattini e lettere accentate)
+        UnaryOperator<javafx.scene.control.TextFormatter.Change> nomeFilter = change -> {
+            String newText = change.getControlNewText();
+            if (newText.matches("[A-Za-zÀ-ÖØ-öø-ÿ '’-]*")) {
+                return change;
+            }
+            return null;
+        };
+        textFieldNome.setTextFormatter(new javafx.scene.control.TextFormatter<>(nomeFilter));
+
+        // Validazione cognome (stesse regole del nome)
+        UnaryOperator<javafx.scene.control.TextFormatter.Change> cognomeFilter = change -> {
+            String newText = change.getControlNewText();
+            if (newText.matches("[A-Za-zÀ-ÖØ-öø-ÿ '’-]*")) {
+                return change;
+            }
+            return null;
+        };
+        textFieldCognome.setTextFormatter(new javafx.scene.control.TextFormatter<>(cognomeFilter));
+
         // Validazione codice fiscale (solo lettere e numeri)
         UnaryOperator<javafx.scene.control.TextFormatter.Change> cfFilter = change -> {
             String newText = change.getControlNewText();
@@ -285,12 +327,6 @@ public class RegistrazioneController {
             return false;
         }
 
-        // Controllo lunghezza password
-        if (passwordField.getText().length() < 6) {
-            showAlert(Alert.AlertType.ERROR, "Errore", "Password troppo corta", 
-                     "La password deve essere di almeno 6 caratteri");
-            return false;
-        }
 
         // Controllo conferma password
         if (!passwordField.getText().equals(passwordFieldRipetiPassword.getText())) {
@@ -301,11 +337,11 @@ public class RegistrazioneController {
 
         // Controllo formato email
         String email = textFieldEmail.getText().trim();
-        if (!email.matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
-            showAlert(Alert.AlertType.ERROR, "Errore", "Email non valida", 
-                     "Inserisci un indirizzo email valido");
-            return false;
-        }
+    if (!isValidEmail(email)) {
+        showAlert(Alert.AlertType.ERROR, "Errore", "Email non valida", 
+            "Formato email non valido o non consentito");
+        return false;
+    }
 
         // Controllo codice fiscale
         String cf = textFieldCodiceFiscale.getText().trim();
@@ -315,7 +351,93 @@ public class RegistrazioneController {
             return false;
         }
 
+        // Controllo formato nome (2-40 caratteri consentiti)
+        String nome = textFieldNome.getText().trim();
+        if (!nome.matches("[A-Za-zÀ-ÖØ-öø-ÿ '’-]{2,40}")) {
+            showAlert(Alert.AlertType.ERROR, "Errore", "Nome non valido", 
+                     "Il nome può contenere solo lettere (anche accentate), spazi, apostrofi o trattini (2-40 caratteri)");
+            return false;
+        }
+
+        // Controllo formato cognome (2-60 caratteri consentiti)
+        String cognome = textFieldCognome.getText().trim();
+        if (!cognome.matches("[A-Za-zÀ-ÖØ-öø-ÿ '’-]{2,60}")) {
+            showAlert(Alert.AlertType.ERROR, "Errore", "Cognome non valido", 
+                     "Il cognome può contenere solo lettere (anche accentate), spazi, apostrofi o trattini (2-60 caratteri)");
+            return false;
+        }
+
+        // Validazione avanzata password
+    String pwError = validatePassword(passwordField.getText());
+        if (pwError != null) {
+            showAlert(Alert.AlertType.ERROR, "Errore", "Password non sicura", pwError);
+            return false;
+        }
+
         return true;
+    }
+
+    // ------------------- Metodi di validazione avanzata ------------------- //
+    /**
+     * Verifica la validità sintattica di un indirizzo email secondo regole applicative
+     * semplificate ma robuste.
+     * <p>Le verifiche effettuate sono:
+     * <ul>
+     *     <li>Match con il {@link #EMAIL_PATTERN} (lunghezza totale, struttura local-part@domain).</li>
+     *     <li>Assenza di punto iniziale o finale nella local-part.</li>
+     *     <li>Nessuna sequenza di due punti consecutivi ("..") né nella local-part né nel dominio.</li>
+     *     <li>Dominio scomposto in etichette valide (già garantito dal pattern).</li>
+     * </ul>
+     * Non vengono effettuati controlli DNS o di deliverability reale (MX, esistenza dominio).
+     * </p>
+     * Esempi considerati validi:
+     * <pre>
+     *   utente.simple@example.com
+     *   nome.cognome+tag@sub.example.org
+     * </pre>
+     * Esempi considerati non validi:
+     * <pre>
+     *   .nome@example.com   (punto iniziale)
+     *   nome.@example.com   (punto finale)
+     *   no..dup@example.com (punti consecutivi)
+     *   nome@example..com   (punti consecutivi nel dominio)
+     * </pre>
+     * @param email stringa email da validare (può essere null o vuota).
+     * @return true se l'email rispetta tutte le regole sopra, false altrimenti.
+     */
+    private boolean isValidEmail(String email) {
+        if (email == null || email.isBlank()) return false;
+        if (!EMAIL_PATTERN.matcher(email).matches()) return false;
+        // Evita doppio punto consecutivo e punto iniziale/finale local part
+        String local = email.substring(0, email.indexOf('@'));
+        if (local.startsWith(".") || local.endsWith(".")) return false;
+        if (local.contains("..")) return false;
+        String domain = email.substring(email.indexOf('@') + 1);
+        if (domain.contains("..")) return false;
+        return true;
+    }
+
+    /**
+     * Restituisce null se la password è accettabile, altrimenti messaggio di errore.
+     */
+    /**
+     * Valida la password secondo criteri locali (complessità minima).
+     * Non effettua controlli su password comuni o correlazioni con altri campi.
+     *
+     * @param pw password in chiaro inserita dall'utente.
+     * @return null se valida, altrimenti messaggio di errore sintetico.
+     */
+    private String validatePassword(String pw) {
+        StringBuilder missing = new StringBuilder();
+        if (pw.length() < PW_MIN_LENGTH) missing.append("- Lunghezza minima ").append(PW_MIN_LENGTH).append(" caratteri\n");
+        if (PW_WHITESPACE.matcher(pw).matches()) missing.append("- Non deve contenere spazi\n");
+        if (!PW_UPPER.matcher(pw).matches()) missing.append("- Almeno una lettera maiuscola (A-Z)\n");
+        if (!PW_LOWER.matcher(pw).matches()) missing.append("- Almeno una lettera minuscola (a-z)\n");
+        if (!PW_DIGIT.matcher(pw).matches()) missing.append("- Almeno una cifra (0-9)\n");
+        if (!PW_SYMBOL.matcher(pw).matches()) missing.append("- Almeno un simbolo speciale (es: ! @ # $ % ...)\n");
+
+        if (missing.length() == 0) return null;
+        return "La password deve rispettare i seguenti requisiti:\n" + missing + "Suggerimento: usa una frase facile da ricordare con numeri e simboli.";
     }
 
     /**
